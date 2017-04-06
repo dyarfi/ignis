@@ -3,17 +3,17 @@
 <div class="container-fluid quiz">
   <?php /*if ($this->participant && $this->participant->completed != 1) { */ ?>
   <?php /*if (!$this->participant) {*/ ?>
-    <?php echo form_open(base_url('account/update_account'),['enctype'=>'multipart/form-data','role'=>'form','name'=>'form_account','id'=>'form_account','class'=>'form-horizontal']); ?>
-     <div class="body-quiz col-md-6 pull-right">
-         <div class="indentity-form">
+      <div class="body-quiz col-md-6 pull-right">
+        <?php if (!$this->participant) { ?>
+        <?php echo form_open(base_url('account/update_account'),['enctype'=>'multipart/form-data','role'=>'form','name'=>'form_account','id'=>'form_account','class'=>'form-horizontal']); ?>
+        <div class="indentity-form">
           <div class="body-indentity">
-                  <div class="text-danger">
-                      <h1 class="uppercase text-white">Gabung <b>Ignis</b>
-                      <small>Sekarang</small>
+                <div class="text-danger">
+                    <h1 class="uppercase text-white">Gabung <b>Ignis</b>
+                    <small>Sekarang</small>
                       <!--a href="<?php echo base_url('account');?>" class="various fancybox.ajax popup_account">account</a-->
-                  </h1>
-                  </div>
-
+                    </h1>
+                </div>
                 <div class="form-group">
                     <!--label for="inputName" class="control-label col-xs-4 text-danger">Nama Lengkap</label-->
                     <div class="col-xs-8">
@@ -50,6 +50,15 @@
                         <input type="text" class="form-control" id="inputId" placeholder="KTP / SIM" name="id_number" value="<?php echo @$this->participant->id_number;?>">
                     </div>
                 </div>
+                <div class="form-group">
+                    <!--label for="inputCaptcha" class="control-label col-xs-4 text-danger">Captcha</label-->
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" id="inputCaptcha" placeholder="Kode Captcha" name="captcha" value="<?php echo @$fields->captcha;?>">
+                    </div>
+                    <div class="col-xs-4">
+                        <a class="reload_captcha four columns" rel="<?php echo base_url('xhr/reload_captcha')?>" href="javascript:;"><?php echo $captcha['image'];?></a>
+                    </div>
+                </div>
           </div>
         </div>
         <?php if (!$this->participant) { ?>
@@ -57,13 +66,13 @@
             <fieldset class="marginbot-50"><legend class="text-white">Atau login dengan akun sosial anda untuk melanjutkan</legend>
                 <ul class="list-inline col-lg-12 col-md-12 col-sm-12">
                     <li>
-                        <a href="javascript:void(0);" class="btn btn-default btn-md btn-info twitter" id="twitter" onclick="popupCenter('<?php echo base_url('hauth/login/Twitter');?>', 'Twitter',480,520);">
-                            <span class="fa fa-twitter"></span>&nbsp;&nbsp;Login Twitter
+                        <a href="javascript:void(0);" class="btn btn-primary btn-md facebook" id="facebook" onclick="popupCenter('<?php echo base_url('hauth/login/Facebook');?>', 'Facebook',480,520);">
+                            <span class="fa fa-facebook"></span>&nbsp;&nbsp;Login Facebook
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" class="btn btn-primary btn-md facebook" id="facebook" onclick="popupCenter('<?php echo base_url('hauth/login/Facebook');?>', 'Facebook',480,520);">
-                            <span class="fa fa-facebook"></span>&nbsp;&nbsp;Login Facebook
+                        <a href="javascript:void(0);" class="btn btn-default btn-md btn-info twitter" id="twitter" onclick="popupCenter('<?php echo base_url('hauth/login/Twitter');?>', 'Twitter',480,520);">
+                            <span class="fa fa-twitter"></span>&nbsp;&nbsp;Login Twitter
                         </a>
                     </li>
                     <li>
@@ -82,10 +91,14 @@
           <button class="btn btn-hero btn-sm btn-danger" role="button">SUBMIT</button>
           <div class="tnc"><a href="<?php echo base_url('page/terms-and-conditions');?>">Syarat &amp; Ketentuan</a></div>
         </div>
-      </div>
-    <?php echo form_close();
-  /*} else {*/ ?>
-  <br/><br/><br/><br/><br/><br/><br/><br/>
+        <?php echo form_close(); ?>
+        <?php } else { ?>
+            <div class="main-page text-white" style="margin:100px auto 340px auto">
+                <h1><?php echo $this->participant->name; ?></h1>
+                <h3>Kode Unik Anda : <b class="text-white"><?php echo $this->participant->verify; ?></b></h3>
+            </div>
+        <?php } ?>
+    </div>
 <?php /*}*/ ?>
 <?php if ($articles) { ?>
       <div class="bar-title">

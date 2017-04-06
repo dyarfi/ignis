@@ -166,14 +166,35 @@
                      $.fancybox.open('Terima kasih untuk partisipasi anda');
                     setTimeout(function() {
                         // Do something after 5 seconds
-                        window.location.href = base_URL + 'quiz/participated';
+                        window.location.href = base_URL;
                     }, 2000);
+                } else {
+                    $('.reload_captcha').click();
                 }
                 //setTimeout(function() {
                     //form.find('button.bt-submit').prop( "disabled", false );
                 //}, 6000);
             }
         })
+        return false;
+    });
+    $('.reload_captcha').on('click',function() {
+        var url = $(this).attr('rel');
+        $.ajax({
+            type: "POST",
+            url: url,
+            //cache: false,
+            //async: true,
+            success: function(msg){
+                $('.reload_captcha').empty().html(msg);
+                // Need random for browser recache
+                img = $('.reload_captcha').find('img');
+                src = img.attr('src');
+                ran = img.fadeOut(50).fadeIn(50).attr('src', src + '?=' + Math.random());
+            },
+            complete: function(msg) {},
+            error: function(msg) {}
+        });
         return false;
     });
   });

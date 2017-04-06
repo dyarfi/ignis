@@ -2,7 +2,7 @@
 
 // Model Class Object for Participants
 class Participants Extends MY_Model {
-    
+
     // Table name for this model
     public $table = 'participants';
 
@@ -21,7 +21,7 @@ class Participants Extends MY_Model {
 
 		$insert_data	= FALSE;
 
-		if (!$this->db->table_exists($this->table)) 
+		if (!$this->db->table_exists($this->table))
 		$insert_data	= FALSE;
 
 		$sql	= 'CREATE TABLE IF NOT EXISTS `'.$this->table.'` ('
@@ -82,9 +82,9 @@ class Participants Extends MY_Model {
 		$data = $this->db->count_all_results();
 		return $data;
     }
-    
+
     public function getParticipantByIdentity($identifier_id='',$identity='') {
-        
+
         if(!empty($identifier_id)){
 			$data = array();
 			$options = array('identifier_id' => $identifier_id,'identity'=>$identity);
@@ -96,9 +96,9 @@ class Participants Extends MY_Model {
 			$Q->free_result();
 			return $data;
 		}
-        
+
     }
-    
+
     public function getActivation($params='') {
         if(!empty($params)){
 			$data = array();
@@ -118,10 +118,10 @@ class Participants Extends MY_Model {
             }
             $Q->free_result();
             return $data;
-		}        
+		}
     }
-    
-    public function getParticipant($id = null){
+
+    public function getParticipant($id = null) {
 		if(!empty($id)){
 			$data = array();
 			$options = array('id' => $id);
@@ -133,7 +133,7 @@ class Participants Extends MY_Model {
 			$Q->free_result();
 			return $data;
 		}
-    }	
+    }
 
     public function getAllParticipant($admin=null){
 		$data = array();
@@ -147,37 +147,37 @@ class Participants Extends MY_Model {
 			}
 		$Q->free_result();
 		return $data;
-    }	
+    }
 
 	public function getConferences($id='',$participant_id = ''){
-		
+
 		$this->db->select('*');
         $this->db->from('tbl_participant_conferences');
         $this->db->join('tbl_conferences', 'tbl_participant_conferences.conference_id = tbl_conferences.id');
         $this->db->join('tbl_participant_conference_completed', 'tbl_participant_conferences.participant_id = tbl_participant_conference_completed.participant_id');
         $this->db->where('tbl_participant_conferences.conference_id', $id)->where('tbl_participant_conferences.participant_id', $participant_id);
-        
+
         $Q = $this->db->get();
-        
+
 		if ($Q->num_rows() > 0){
 			foreach ($Q->result_object() as $row){
                 $data[] = $row;
             }
 		}
 		$Q->free_result();
-		
+
 		// Update User data
 		return $data;
-		
+
 	}
-    
-    // Get participant's Email from posts 
+
+    // Get participant's Email from posts
 	public function getEmail($email=null){
 	    if(!empty($email)){
 		$data = array();
 
 		// Option and query result
-		$options = array('email' => $email);			
+		$options = array('email' => $email);
 		$Q = $this->db->get_where($this->table,$options,1);
 
 		// Check result
@@ -187,11 +187,11 @@ class Participants Extends MY_Model {
             } else {
                 // Return false if exists
                 return false;
-            }		 
+            }
 	    }
 	}
-    
-    // Get participant's by their Email from posts 
+
+    // Get participant's by their Email from posts
     public function getByEmail($email = null){
 	    if(!empty($email)){
 		$data = array();
@@ -207,30 +207,30 @@ class Participants Extends MY_Model {
 	}
 	// Get all Participants Join stats by join_date
 	public function getJoinStats() {
-	    
+
 		/* SELECT count(`part_id`) `total_join`, date(`join_date`) `join_date` FROM `tbl_participants` WHERE date(`join_date`) >= '2014-10-25' AND date(`join_date`) <= '2015-03-25' GROUP BY date(`join_date`) ORDER BY `join_date` ASC */
-		
+
 	    $sql = 'SELECT count(`id`) `total_join`, date(`join_date`) `join_date` '
                     .'FROM `'. $this->table .'`'
                     .'WHERE date(`join_date`) >= \''.date('Y-m-d',strtotime("-5 month", time())).'\' '
                     .'AND date(`join_date`) <= \''.date('Y/m/d').'\' '
                     .'GROUP BY date(`join_date`) ORDER BY `join_date` ASC';
-	    
+
 	    $query = $this->db->query($sql);
-            
+
 	    return $query->result_object();
 	}
-    
+
     // Authenticate function for user login
-	public function login($object=null){		
+	public function login($object=null){
 	    if(!empty($object)){
 		$data = array();
 		$options = array(
-				'email' => $object['email'], 
+				'email' => $object['email'],
 				'password' => sha1($object['email'].$object['password']));
 
 		$Q = $this->db->get_where($this->table,$options,1);
-		if ($Q->num_rows() > 0){				
+		if ($Q->num_rows() > 0){
 		    foreach ($Q->result_object() as $row) {
                 if (intval($row->status) === 1) {
                     // Update login state to true
@@ -240,8 +240,8 @@ class Participants Extends MY_Model {
                     $data = 'disabled';
                 }
 		    }
-		} 			 
-        
+		}
+
 		$Q->free_result();
 		return $data;
 	    }
@@ -262,31 +262,31 @@ class Participants Extends MY_Model {
 	    //Return result
 	    return $this->db->update($this->table, array('last_login'=>time(),'logged_in'=>0));
 	}
-	
+
 	public function setLoggedIn($id=null) {
 	    //Get user id
 	    $this->db->where('id', $id);
 	    //Return result
 	    return $this->db->update($this->table, array('logged_in'=>1,'session_id'=>$this->session->userdata('session_id')));
 	}
-	
+
 	public function setPassword($user=null,$changed=''){
-		
+
 	    $password = ($changed) ? $changed : random_string('alnum', 8);
 
 	    $data = array('password' => sha1($user->username.$password));
 
 	    $this->db->where('id', $user->id);
-	    $this->db->update($this->table, $data); 
+	    $this->db->update($this->table, $data);
 
 	    return $password;
-		
+
 	}
-    
+
     public function setParticipant($object=null){
 
 		// Set Participant data
-		$data = array(			
+		$data = array(
             'identifier_id' => @$object['identifier_id'],
             'identity'      => @$object['identity'],
             'profile_url'   => @$object['profile_url'],
@@ -305,7 +305,7 @@ class Participants Extends MY_Model {
             'address'	=> @$object['address'],
             'region'	=> @$object['region'],
             'phone_number' => @$object['phone'],
-            'photo_url'	=> @$object['photo_url'],			
+            'photo_url'	=> @$object['photo_url'],
             'status' => @$object['status']
 		);
 
@@ -318,15 +318,25 @@ class Participants Extends MY_Model {
 		// Return last insert id primary
 		return $insert_id;
 
-    }	
-	
-	public function updateParticipant($object=null){
-	    
-	    // Update User data             
-	    $this->db->where('id', $object['id']);      
+    }
 
-	    // Return last insert id primary
-	    $update = $this->db->update($this->table, $object);	
+	public function updateParticipant($object=null){
+        // Check if the id is existed or not
+        if ($object['id']) {
+
+    	    // Update User data
+    	    $this->db->where('id', $object['id']);
+
+    	    // Return last insert id primary
+    	    $update = $this->db->update($this->table, $object);
+
+        } else {
+
+            // Return last insert id primary
+    	    $this->db->insert($this->table, $object);
+            $update = $this->db->insert_id();
+
+        }
 
 	    return $update;
 	}
@@ -338,7 +348,7 @@ class Participants Extends MY_Model {
 		$this->db->where('id', $id);
 
 		// Delete page form database
-		return $this->db->delete($this->table);		
-    }	
-	
+		return $this->db->delete($this->table);
+    }
+
 }

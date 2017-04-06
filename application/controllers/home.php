@@ -17,6 +17,8 @@ class Home extends Public_Controller {
 
 		// Load Setting data
 		$this->load->model('admin/Settings');
+		// Load CAPTCHA model
+		$this->load->model('Captcha');
 
 		// Load User related model in admin module
 		$this->load->model('article/Articles');
@@ -42,10 +44,11 @@ class Home extends Public_Controller {
 
 	public function index() {
 
+		// Set articles data
 		$data['articles'] =	$this->Articles->getAllArticles();
 
 		// Set site title page with module menu
-		$data['page_title'] = 'Home';
+		$data['page_title'] = 'Suzuki Ignis Indonesia';
 
 		// Set contact email info data
 		$data['email_info']	= $this->Settings->getByParameter('email_info');
@@ -55,6 +58,9 @@ class Home extends Public_Controller {
 
 		// Load participant data if existed
 		$data['participant'] 	= $this->participant;
+
+		// Captcha data
+		$data['captcha']	= $this->Captcha->image();
 
 		// Set main template
 		$data['main'] = 'home';

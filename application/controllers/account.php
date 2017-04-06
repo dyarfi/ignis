@@ -356,9 +356,10 @@ class Account extends Public_Controller {
                         'name'  => '',
                         'email' => '',
                         'address' => '',
-                        'phone_number' => '',
-                        'phone_home'   => '',
-                        'id_number'   => '');
+                        'phone_number'=> '',
+                        'phone_home'  => '',
+                        'id_number'   => '',
+						'captcha'     => '');
 
         $errors	= $fields;
 
@@ -366,8 +367,9 @@ class Account extends Public_Controller {
 		$this->form_validation->set_rules('email', 'Email','trim|required|max_length[55]|xss_clean');
         $this->form_validation->set_rules('address', 'Alamat','trim|required');
         $this->form_validation->set_rules('phone_number', 'No. Hp','trim|numeric|required');
-        $this->form_validation->set_rules('phone_home', 'No. Telp','trim|numeric|required');                
+        $this->form_validation->set_rules('phone_home', 'No. Telp','trim|numeric|required');
         $this->form_validation->set_rules('id_number', 'No. ID','trim|required');
+		$this->form_validation->set_rules('captcha', 'Captcha Code','trim|required|xss_clean|callback_match_captcha');
         //$this->form_validation->set_rules('phone_number', 'Phone Number','trim|is_numeric|xss_clean|max_length[25]');
         //$this->form_validation->set_rules('password', 'Password','trim|required');
 	    //$this->form_validation->set_rules('confirm_password', 'Confirm Password','trim|required|matches[password]');
@@ -405,7 +407,7 @@ class Account extends Public_Controller {
 
                 $object = array();
 
-                $participant_id = $this->participant->id;
+                $participant_id = $this->participant ? $this->participant->id : NULL;
 
 				$object['id']              = $participant_id;
                 $object['name']            = $this->input->get_post('name', true);
@@ -414,14 +416,14 @@ class Account extends Public_Controller {
 				$object['phone_number']    = $this->input->get_post('phone_number', true);
                 $object['phone_home']      = $this->input->get_post('phone_home', true);
                 $object['id_number']       = $this->input->get_post('id_number', true);
-				//$object['verify']        = $this->input->get_post('captcha', true);
+				$object['verify']		   = strtoupper($this->input->get_post('captcha', true) .'-'.random_string('alnum',2));
                 $object['status']          = '1';
                 $object['completed']       = '1';
 
                 $return = $this->Participants->updateParticipant($object);
 
                 // Check if session was made
-                if ($this->participant) {
+                if ($this->participant && $participant_id) {
 
                     // Set temporary data
                     $this->_participant = $this->Participants->getParticipant($participant_id);
@@ -433,7 +435,21 @@ class Account extends Public_Controller {
                     $this->participant = $this->_participant;
                     $this->session->set_userdata('participant',$this->participant);
 
-                }
+					// This means that the user did not register with their social sign in
+                } else {
+
+
+					// Set temporary data
+                    $this->_participant = $this->Participants->getParticipant($return);
+
+                    // Unset data from session
+                    unset($this->participant);
+
+                    // Set new data and to session
+                    $this->participant = $this->_participant;
+                    $this->session->set_userdata('participant',$this->participant);
+
+				}
 
                 //print_r($this->participant);
                 //exit;
@@ -469,10 +485,10 @@ class Account extends Public_Controller {
 				if ($this->input->is_ajax_request()) {
 					// Send json message
 					$result['result']	= 'OK';
-					$result['label']	= base_url('upload');
+					$result['label']	= base_url();
 				} else {
                     // Redirect if not ajax
-					redirect(base_url('quiz'));
+					redirect(base_url());
 				}
 		    }
 
