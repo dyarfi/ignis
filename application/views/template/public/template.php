@@ -9,15 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-
-    <title><?php echo $page_title .' | ' . config_item('title_name') .' - ' . config_item('site_title'); ?></title>  
+    <title><?php echo $page_title .' | ' . config_item('title_name') .' - ' . config_item('site_title'); ?></title>
     <script type="text/javascript">var base_URL = '<?php echo base_url();?>';</script>
-    <?php 
+    <?php
     /*
-    * MINIFY CSS 
+    * MINIFY CSS
     * ----------------------
     * Add css files that want to be minify
-    */    
+    */
     // Add / Change default dir
     $this->minify->assets_dir = 'assets/public/css';
     // Add Stylesheet
@@ -32,13 +31,13 @@
     /*
      * Adding additional stylesheet from controller
      */
-    if (!empty($css_files)) { 
+    if (!empty($css_files)) {
         foreach ($css_files as $sheet => $css):
           // Add js to minified
           $this->minify->add_css($css, $sheet);
-        endforeach; 
+        endforeach;
     }
-    /* 
+    /*
      * ----------------- BEWARE OF DEPLOYING | ALWAYS SET TO FALSE AFTER RECOMPILE ------------------
      * Recompile css!!! Set this to true every times you add css library from anywhere
      * delete assets/public/css/styles.min.css to recompile again
@@ -73,13 +72,13 @@
 	<div class="messageFlash">
 		<?php $this->load->view('flashdata'); ?>
 	</div>
-    <?php $this->load->view($main); ?>        
-	<?php $this->load->view('template/public/footer'); ?>	
-	
+    <?php $this->load->view($main); ?>
+	<?php $this->load->view('template/public/footer'); ?>
+
     <!-- Core JavaScript Files -->
   <?php
     /*
-    * MINIFY JS 
+    * MINIFY JS
     * ----------------------
     * Add js files that want to be minify
     */
@@ -95,37 +94,37 @@
       "public/js/jquery.easing.min.js",
       "public/js/jquery.scrollTo.js",
       "public/js/imagesloaded.pkgd.min.js",
-      "public/js/style.js"      
+      "public/js/style.js"
     ]);
     /*
      * Adding additional javascript from controller
      */
-    if (!empty($js_files)) { 
+    if (!empty($js_files)) {
         foreach ($js_files as $group => $file):
           // Add js to minified
           $this->minify->add_js($file, $group);
-        endforeach; 
+        endforeach;
     }
-    /* 
+    /*
      * ----------------- BEWARE OF DEPLOYING | ALWAYS SET TO FALSE AFTER RECOMPILE ------------------
      * Recompile javascript!!! Set this to true every times you add javascripts library from anywhere
      * delete assets/public/js/scripts.min.js to recompile again
      */
     echo $this->minify->deploy_js(FALSE);
   ?>
-  <?php 
+  <?php
     /*
-     * Debugging information only 
+     * Debugging information only
      *
      */
     /* if (!empty($js_files)) { foreach ($js_files as $file): ?>
     <script src="<?php echo $file; ?>"></script>
-    <?php endforeach; } */ 
+    <?php endforeach; } */
   ?>
   <!-- Custom Theme JavaScript -->
   <script type="text/javascript">
-  $(document).ready(function() {     
-    
+  $(document).ready(function() {
+
     $('.popup_account').click(function() {
         $.fancybox.open({
              autoSize : false,
@@ -139,12 +138,12 @@
 
     $('.popup_account').attr({'style':'text-shadow:1px 1px 0 rgba(255,255,255,0.75);color:#233247'});
 
-  <?php 
+  <?php
     // Write the javascript inline in the controller
     echo ($js_inline) ? "\t".$js_inline."\n" : "";
   ?>
 
-    
+
     $('#form_account').submit(function(){
         //alert($(this).serialize());
         var urls = $(this).attr('action');
@@ -155,27 +154,27 @@
             data:$(this).serialize(),
             success : function(ms) {
                 var msg = ms.result;
-                if (ms.result.code === 0) {             
-                    //var tmp = '';               
-                    //$.each(msg.message, function( i, m ) {    
-                        //tmp += m; 
+                if (ms.result.code === 0) {
+                    //var tmp = '';
+                    //$.each(msg.message, function( i, m ) {
+                        //tmp += m;
                     //});
-                    //jAlert(tmp,'Tolong periksa kembali');     
+                    //jAlert(tmp,'Tolong periksa kembali');
                     $.fancybox.open('<div class="col-md-12">' + msg.message + '</div>');
-                    //$( "#result" ).append( msg.message );          
+                    //$( "#result" ).append( msg.message );
                 } else if(ms.result === 'OK') {
                      $.fancybox.open('Terima kasih untuk partisipasi anda');
                     setTimeout(function() {
                         // Do something after 5 seconds
                         window.location.href = base_URL + 'quiz/participated';
                     }, 2000);
-                }       
-                //setTimeout(function() {                 
+                }
+                //setTimeout(function() {
                     //form.find('button.bt-submit').prop( "disabled", false );
                 //}, 6000);
             }
         })
-        return false;        
+        return false;
     });
   });
 function popupCenter(url, title, w, h) {
@@ -183,7 +182,7 @@ function popupCenter(url, title, w, h) {
     //var top = (screen.height/2)-(h/2);
     //return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
     window.location.href = url;
-} 
+}
   </script>
 </body>
 </html>

@@ -4,19 +4,19 @@ class HAuth extends Public_Controller {
 
     public function __construct () {
         parent::__construct();
-        
+
         $this->load->library('HybridAuthLib');
     }
-    
+
 	public function index(){ $this->load->view('hauth/home'); }
-    
-    public function done(){ 
+
+    public function done(){
 
     	// Set main template
-    	$data['main'] = 'hauth/done'; 
+    	$data['main'] = 'hauth/done';
 
 		// Load site template
-		$this->load->view('template/public/template', $this->load->vars($data));	
+		$this->load->view('template/public/template', $this->load->vars($data));
 
     }
 
@@ -26,13 +26,14 @@ class HAuth extends Public_Controller {
 
 		try
 		{
-			log_message('debug', 'controllers.HAuth.login: loading HybridAuthLib');			
+			log_message('debug', 'controllers.HAuth.login: loading HybridAuthLib');
 
 			if ($this->hybridauthlib->providerEnabled($provider))
 			{
 				log_message('debug', "controllers.HAuth.login: service $provider enabled, trying to authenticate.");
 				$service = $this->hybridauthlib->authenticate($provider);
-                
+                print_r($service);
+                exit;
                 if ($service->isUserConnected())
 				{
 					log_message('debug', 'controller.HAuth.login: user authenticated.');
@@ -42,21 +43,21 @@ class HAuth extends Public_Controller {
 					log_message('info', 'controllers.HAuth.login: user profile:'.PHP_EOL.print_r($user_profile, TRUE));
 
 					$data['user_profile'] = $user_profile;
-                    
+
                     if ($user_profile) {
-                            
+
                             $participant = $this->Participants->getParticipantByIdentity($user_profile->identifier,$provider);
                             // print_r($participant);
-                            // print_r($user_profile);                            
+                            // print_r($user_profile);
                             // exit;
                             if (!$participant) {
-                                
+
                                 $object['identifier_id'] = $user_profile->identifier;
                                 $object['identity'] = $provider;
                                 $object['profile_url'] = $user_profile->profileURL;
                                 $object['name'] = $user_profile->displayName;
                                 $object['gender'] = $user_profile->gender;
-                                $object['age'] = $user_profile->age;
+                                $object['age'] = (int) $user_profile->age;
                                 $object['email'] = $user_profile->email;
                                 $object['address'] = $user_profile->address;
                                 $object['region'] = $user_profile->region;
@@ -64,35 +65,35 @@ class HAuth extends Public_Controller {
                                 $object['website'] = $user_profile->webSiteURL;
                                 $object['about'] = $user_profile->description;
                                 $object['photo_url'] = $user_profile->photoURL;
-                                $object['status'] = 0;                                
-                                
+                                $object['status'] = 0;
+
                                 $participant_id = $this->Participants->setParticipant($object);
 
                                 $participant = $this->Participants->getParticipantByIdentity($user_profile->identifier,$provider);
 
                             } // else {
-								
+
 								// Unset data from session
 							    // $this->participant = $participant;
                                 // $this->session->unset_userdata('participant');
-                                //$this->session->set_userdata('participant', $participant);                             
-                        		
+                                //$this->session->set_userdata('participant', $participant);
+
                             //}
 
                             $this->session->set_userdata('participant', $participant);
-							redirect('quiz','refresh');
+							redirect('?redirect='.$provider,'refresh');
                         // usleep(50000);
                 		// redirect('hauth/done');
-                        //if ($this->session->userdata('participant')) { 
+                        //if ($this->session->userdata('participant')) {
 
                         	//redirect('hauth/login/'.$provider);
 
                     	//}
-    
+
                     }
-                    
+
                     //print($participant);
-                    //exit;	
+                    //exit;
 					$this->load->view('hauth/done',$data);
 				}
 				else // Cannot authenticate user

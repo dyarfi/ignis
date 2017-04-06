@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= "http://". $_SERVER['HTTP_HOST']."/geartoexplore/";
+$config['base_url']	= "http://". $_SERVER['HTTP_HOST']."/ignis/";
 
 /*
 |--------------------------------------------------------------------------
@@ -357,18 +357,18 @@ $config['rewrite_short_tags'] = TRUE;
 $config['proxy_ips'] = '';
 
 // Developers Name and website
-$config['developer_name']	= 'Dentsu Digital Division'; 
+$config['developer_name']	= 'Dentsu Digital Division';
 $config['developer_url']	= 'http://dentsu.digital/';
 
 // Site name configuration
-$config['site_name']        = 'Dentsu Digital Division'; 
+$config['site_name']        = 'Dentsu Digital Division';
 
 // TRUE for site is open or FALSE for maintenance mode
 $config['site_open']		= TRUE;
 
 // Set attachment type
 $config['type_attachment'] 	= ['fabric','tracking','qrcoder'];
-		
+
 // Module location in the application folder, see @config/modules.php for module configs and @config/routes.php for module routes
 $config['modules_locations'] = array(
         APPPATH.'modules/' => '../modules/'

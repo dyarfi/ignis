@@ -48,10 +48,20 @@
 $active_group = 'default';
 $active_record = TRUE;
 
+/************ LIVESITE **************/
+// $db['default']['hostname'] = 'localhost';
+// $db['default']['username'] = 'suzukico_usrglbl';
+// $db['default']['password'] = 'fWrG6-ELq#{3';
+// $db['default']['database'] = 'suzukico_global';
+/************ LIVESITE **************/
+
+/************ LOCALHOST **************/
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'suzukico_sx4usr';
-$db['default']['password'] = ';BSgO023fJp?';
-$db['default']['database'] = 'suzukico_sx4';
+$db['default']['username'] = 'rootapp';
+$db['default']['password'] = 'password';
+$db['default']['database'] = 'dentsu_suzukiignis';
+/************ LOCALHOST **************/
+
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'tbl_';
 $db['default']['pconnect'] = TRUE;

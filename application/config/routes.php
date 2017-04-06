@@ -41,7 +41,7 @@
 /*
 | -------------------------------------------------------------------------
 | MODULE ADMIN PANEL ROUTING - [START]
-| ------------------------------------------------------------------------- 
+| -------------------------------------------------------------------------
 */
 
 $admin = (ADMIN) ? str_replace('/', '', ADMIN) : '';
@@ -56,7 +56,7 @@ $route[$admin.'/user/(:any)']		= 'admin/user/$1';
 $route[$admin.'/usergroup/(:any)']	= 'admin/usergroup/$1';
 $route[$admin.'/language/(:any)']	= 'admin/language/$1';
 $route[$admin.'/modulelist/(:any)']	= 'admin/modulelist/$1';
-$route[$admin.'/setting/(:any)']	= 'admin/setting/$1'; 
+$route[$admin.'/setting/(:any)']	= 'admin/setting/$1';
 //$route[$admin.'/serverlog/(:any)']	= 'admin/serverlog/$1';
 /***** Administrator module menu mandatory [end] *****/
 
@@ -72,42 +72,13 @@ $route[$admin.'/page_gallery/(:any)']  = 'page/page_gallery/$1';
 $route[$admin.'/article/(:any)']	 = 'article/$1';
 $route[$admin.'/article_gallery/(:any)']  = 'article/article_gallery/$1';
 
-//$route[$admin.'/qrcodescanner/(:any)']	= 'qrcode/qrcodescanner/$1';
-
-$route[$admin.'/questionnaire/(:any)']		= 'questionnaire/$1';
-$route[$admin.'/question/(:any)']			= 'questionnaire/question/$1';
-$route[$admin.'/questionrule/(:any)']		= 'questionnaire/questionrule/$1';
-$route[$admin.'/questionuseranswer/(:any)']	= 'questionnaire/questionuseranswer/$1';
-
 // Participant and Attachment Routes
 $route[$admin.'/participant/(:any)']			= 'participant/$1';
-$route[$admin.'/participant_answer/(:any)']		= 'participant/participant_answer/$1';
-
-// Color
-//$route[$admin.'/color/(:any)']			= 'color/$1';
-//$route[$admin.'/colorscanner/(:any)']		= 'color/colorscanner/$1';
-//$route[$admin.'/colorcontent/(:any)']		= 'color/colorcontent/$1';
-//$route[$admin.'/colorpersonal/(:any)']	= 'color/colorpersonal/$1';
-
-// Participant and Attachment Routes
-//$route[$admin.'/participant/(:any)']	= 'participant/$1';
-//$route[$admin.'/attachment/(:any)']		= 'participant/attachment/$1';
-
-// Conference module routes
-//$route[$admin.'/conference/(:any)']	 = 'conference/$1';
-//$route[$admin.'/information/(:any)'] = 'conference/information/$1';
-//$route[$admin.'/schedule/(:any)']	 = 'conference/schedule/$1';
-//$route[$admin.'/speaker/(:any)']	 = 'conference/speaker/$1';
-//$route[$admin.'/submission/(:any)']	 = 'conference/submission/$1';
-//$route[$admin.'/conference_gallery/(:any)']  = 'conference/conference_gallery/$1';
-//$route[$admin.'/conference_banner/(:any)']  = 'conference/conference_banner/$1';
-
-//$route[$admin.'/(:any)'] = '$1';
 
 /*
 | -------------------------------------------------------------------------
 | MODULE ADMIN PANEL ROUTING - [END]
-| ------------------------------------------------------------------------- 
+| -------------------------------------------------------------------------
 */
 $route['page/terms-and-conditions'] = 'site_page/detail/terms-and-conditions';
 $route['page/privacy']		   		= 'site_page/detail/privacy';
