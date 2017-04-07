@@ -57,8 +57,8 @@ $active_record = TRUE;
 
 /************ LOCALHOST **************/
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'rootapp';
-$db['default']['password'] = 'password';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
 $db['default']['database'] = 'dentsu_suzukiignis';
 /************ LOCALHOST **************/
 

@@ -34,17 +34,7 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
-	.hero h1 {font-size: 3em;}
-	.hero h4 {margin-bottom: 10px;}
-	.hero {top: 60%;}
-	iframe {
-	  width: 100%    !important;
-	  height: auto   !important;
-	}
-	.quiz-page {width: 100%;}
-	.article-page{padding: 200px 50px 100px;}
-	.footer{width: 55%;margin-right: -1px;}
-	.footer-right{width: 45%;}
+
 }
 
 /* Medium Devices, Desktops */
@@ -59,40 +49,14 @@
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width : 480px) {
-	    .navbar-brand>img {
-	        width: 50%;
-	    	margin-left: 14px;
-	    }
-	    .hero h1 {font-size: 2em;}
-		.hero {top: 43%;}
-		.hero h4 {margin-bottom: 5px;}
-		.article, .article-right {width: 50%;}
-		.footer-bar-left,.footer-bar-right{display: none;}
-		.footer, .footer-right{
-			float: none;
-			width: 100%;
-			margin: 0;
-		}
-		.article-item {padding: 0 50px;}	
-		.footer {
-			padding: 10px 20px;
-		    font-size: 0.8em;
-		    text-align: center;
-		}
-		.navbar-toggle{margin-right: 25px;}
-		.quiz-page {
-		    margin: 10px auto;
-		    padding: 0;
-		}
-		.article-page-title {margin-top: 50px;}
-		.article-page {
-		    width: 100%;
-		    margin: 0;
-		    padding: 20px;
-		}
-		.back-to-article .article {width: 80%;}
-		.back-to-article {margin: 50px 0 -50px;}
-		.funkyradio label{font-size: 0.8em;}
+	.mobil{padding: 0px;}
+	.produk-ignis{margin-left: 0px;}
+	h1, .h1 {font-size: 3.3em;}
+	footer{position: relative;}
+	.captcha-css .col-md-8, .captcha-css .col-md-4{padding-right: 0;}
+	.list-inline>li{display: block; text-align: center; margin: 10px 0;}
+	.list-inline>li a, .btn-danger{width: 100%;}
+	.logo-suzuki{width: 100px;}
 }
 
 /* Custom, iPhone Retina */ 
@@ -102,10 +66,5 @@
 
 /* custom fix media */
 @media only screen and (width: 600px){
-	.navbar-brand>img {
-		width: 60%;
-		margin-left: 15px;
-	}
-	.navbar-toggle{margin-right: 30px;}
-	.footer{font-size: 0.85em;}
+
 }

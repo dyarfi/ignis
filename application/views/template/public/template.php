@@ -22,8 +22,8 @@
     // Add Stylesheet
     $this->minify->css([
       "public/css/bootstrap.min.css",
-      "public/css/fancybox/jquery.fancybox.css",
-      "public/font-awesome/css/font-awesome.css",
+      //"public/css/fancybox/jquery.fancybox.css",
+      //"public/font-awesome/css/font-awesome.css",
       //"public/css/animate.css",
       "public/css/style.css",
       "public/css/media-queries.css"
@@ -42,17 +42,17 @@
      * Recompile css!!! Set this to true every times you add css library from anywhere
      * delete assets/public/css/styles.min.css to recompile again
      */
-    echo $this->minify->deploy_css(FALSE);
+    //echo $this->minify->deploy_css(FALSE);
    ?>
 
     <!-- Bootstrap core CSS -->
-    <!--link href="<?php echo base_url('assets/public/css/bootstrap.min.css');?>" rel="stylesheet"-->
+    <link href="<?php echo base_url('assets/public/css/bootstrap.min.css');?>" rel="stylesheet"-->
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this template -->
-    <!--link href="<?php echo base_url('assets/public/css/style.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/public/css/style.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/public/css/media-queries.css');?>" rel="stylesheet"-->
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -110,7 +110,7 @@
      * Recompile javascript!!! Set this to true every times you add javascripts library from anywhere
      * delete assets/public/js/scripts.min.js to recompile again
      */
-    echo $this->minify->deploy_js(FALSE);
+    //echo $this->minify->deploy_js(FALSE);
   ?>
   <?php
     /*
