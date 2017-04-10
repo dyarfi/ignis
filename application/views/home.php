@@ -98,6 +98,7 @@
     </div>
 
   </div>
+  </div>
 
 </section> <!-- /container -->
 
@@ -128,4 +129,4 @@
       </div>
 <?php } else { ?>
 <?php } ?>
-</div>
+
