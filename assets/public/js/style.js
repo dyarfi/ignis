@@ -22,6 +22,7 @@ $( document ).ready(function() {
     $('#form_account').submit(function(){
         //alert($(this).serialize());
         var urls = $(this).attr('action');
+        var phone = $('#inputPhone').val();
         $.ajax({
             method: "POST",
             url: urls,
@@ -36,13 +37,17 @@ $( document ).ready(function() {
                     //});
                     //jAlert(tmp,'Tolong periksa kembali');
                     $.fancybox.open('<div class="col-md-12">' + msg.message + '</div>');
+                    $('.reload_captcha').click();
                     //$( "#result" ).append( msg.message );
                 } else if(ms.result === 'OK') {
                      $.fancybox.open('Terima kasih untuk partisipasi anda');
-                    setTimeout(function() {
+                     setTimeout(function() {
                         // Do something after 5 seconds
                         window.location.href = base_URL + 'participated';
-                    }, 2000);
+                        //$.post('http://aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid='+phone+'&sp=jak',function() {
+                            //window.location.href = base_URL + 'participated';
+                        //});
+                    }, 1000);
                 } else {
                     $('.reload_captcha').click();
                 }

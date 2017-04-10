@@ -9,10 +9,7 @@
         <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
         <div id="result" class="col-md-12"></div>
         <div class="container-fluid quiz">
-          <?php /*if ($this->participant && $this->participant->completed != 1) { */ ?>
-          <?php /*if (!$this->participant) {*/ ?>
-              <div>
-                <?php if (!$this->participant && @$this->participant->completed !=1) { ?>
+                <div>
                 <?php echo form_open(base_url('account/update_account'),['enctype'=>'multipart/form-data','role'=>'form','name'=>'form_account','id'=>'form_account','class'=>'form-horizontal']); ?>
                 <div class="indentity-form">
                   <div class="body-indentity">
@@ -72,19 +69,12 @@
                 <?php } else { ?>
                     <span class="text-white">Terima Kasih telah menggunakan Account<?php echo ' '.$this->input->get('redirect');?> Anda. Silahkan melanjutkan mengisi form diatas.</span>
                 <?php } ?>
-                <div class="submit-quiz" style="text-align: center; margin: 20px 0 100px auto;">
+                <div class="submit-quiz" style="text-align: center; margin: 20px 0 130px auto;">
                   <button class="btn btn-hero btn-md btn-danger" role="button">SUBMIT</button>
                   <div class="tnc" style="margin: 10px 0;"><a href="<?php echo base_url('page/terms-and-conditions');?>">Syarat &amp; Ketentuan</a></div>
                 </div>
                 <?php echo form_close(); ?>
-                <?php } else { ?>
-                    <div class="main-page text-white" style="margin:100px auto 340px auto">
-                        <h1><?php echo $this->participant->name; ?></h1>
-                        <h3>Kode Unik Anda : <b class="text-white"><?php echo $this->participant->verify; ?></b></h3>
-                    </div>
-                <?php } ?>
             </div>
-        <?php /*}*/ ?>
       </div>
     </div>
   </div>

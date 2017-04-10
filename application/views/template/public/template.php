@@ -124,7 +124,7 @@
   <?php
     // Write the javascript inline in the controller
     echo ($js_inline) ? "\t".$js_inline."\n" : "";
-  ?>    
+  ?>
   });
 function popupCenter(url, title, w, h) {
     //var left = (screen.width/2)-(w/2);
@@ -133,6 +133,8 @@ function popupCenter(url, title, w, h) {
     window.location.href = url;
 }
   </script>
+  <script language='JavaScript1.1' src='//pixel.mathtag.com/event/js?mt_id=1159526&mt_adid=185618&s1=<?php echo base_url();?>&s2=<?php echo $this->agent->referrer();?>&s3=<?php echo $this->config->item('language');?>'></script>
+  <script language='JavaScript1.1' src='//pixel.mathtag.com/event/js?mt_id=1159527&mt_adid=185618&s1=<?php echo base_url();?>&s2=<?php echo $this->agent->referrer();?>&s3=<?php echo $this->config->item('language');?>'></script>  
 </body>
 </html>
 <?php //echo $this->benchmark->memory_usage();?>

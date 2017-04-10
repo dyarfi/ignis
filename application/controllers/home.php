@@ -44,6 +44,13 @@ class Home extends Public_Controller {
 
 	public function index() {
 
+		// Set Participant
+		if (@$this->participant->completed == 1 && @$this->participant->status == 1) {
+
+			redirect('participated','refresh');
+
+		}
+
 		// Set articles data
 		$data['articles'] =	$this->Articles->getAllArticles();
 
@@ -66,62 +73,11 @@ class Home extends Public_Controller {
 		$data['main'] = 'home';
 
 		// Load js execution
-		$data['js_inline'] = "$('.popup_account').click()";
-		//$data['js_inline'] = "";
+		//$data['js_inline'] = "$('.popup_account').click()";
+		$data['js_inline'] = "";
 
 		// Load js execution
-		$data['js_inline'] .= "
-		$('#submit_email').submit(function(e) {
-			e.preventDefault();
-			// default form var
-			var userform = $(this);
-			// process the form
-			$.ajax({
-				type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-					//url       : 'process.php', // the url where we want to POST
-				data        : $(this).serialize(), // our data object
-				dataType    : 'json', // what type of data do we expect back from the server
-				encode      : true,
-					//beforeSend: function(){
-						//userform.find('input').prop(\"disabled\", true);
-					//},
-				complete: function(message) {
-					var msg = message.responseJSON;
-					userform.find('.msg').empty();
-					userform.find('.msg')
-					.html('<div class=\"alert alert-danger msg\">'
-						+'<button class=\"close\" data-close=\"alert\"></button>'
-						+msg.result.text+'</div>');
-
-				if (msg.result.code === 1) {
-					userform.find('input').prop(\"disabled\", true);
-					setTimeout(function() {
-												// Do something after 5 seconds
-						window.location.href = base_URL + 'quiz';
-					}, 2000);
-				} else {
-					userform.find('input').prop(\"disabled\", false);
-				}
-					// userform.find('input').prop(\"disabled\", false);
-
-					// $('.reload_captcha').click();
-					// alert(msg.result);
-					// console.log(msg.result);
-				},
-				error: function(x,message,t) {
-					if(message===\"timeout\") {
-						alert('got timeout');
-					} else {
-											//alert(message);
-					}
-				}
-				}).always(function() {
-					userform.find('input').prop(\"disabled\", true);
-				});
-
-				return false;
-				});
-		";
+		$data['js_inline'] .= "";
 
 		// Load site template
 		$this->load->view('template/public/template', $this->load->vars($data));
@@ -181,69 +137,14 @@ class Home extends Public_Controller {
 		$data['captcha']	= $this->Captcha->image();
 
 		// Set main template
-		$data['main'] = 'home';
+		$data['main'] = 'participated';
 
 		// Load js execution
-		$data['js_inline'] = "$('.popup_account').click()";
-		//$data['js_inline'] = "";
-
-		// Load js execution
-		$data['js_inline'] .= "
-		$('#submit_email').submit(function(e) {
-			e.preventDefault();
-			// default form var
-			var userform = $(this);
-			// process the form
-			$.ajax({
-				type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-					//url       : 'process.php', // the url where we want to POST
-				data        : $(this).serialize(), // our data object
-				dataType    : 'json', // what type of data do we expect back from the server
-				encode      : true,
-					//beforeSend: function(){
-						//userform.find('input').prop(\"disabled\", true);
-					//},
-				complete: function(message) {
-					var msg = message.responseJSON;
-					userform.find('.msg').empty();
-					userform.find('.msg')
-					.html('<div class=\"alert alert-danger msg\">'
-						+'<button class=\"close\" data-close=\"alert\"></button>'
-						+msg.result.text+'</div>');
-
-				if (msg.result.code === 1) {
-					userform.find('input').prop(\"disabled\", true);
-					setTimeout(function() {
-												// Do something after 5 seconds
-						window.location.href = base_URL + 'quiz';
-					}, 2000);
-				} else {
-					userform.find('input').prop(\"disabled\", false);
-				}
-					// userform.find('input').prop(\"disabled\", false);
-
-					// $('.reload_captcha').click();
-					// alert(msg.result);
-					// console.log(msg.result);
-				},
-				error: function(x,message,t) {
-					if(message===\"timeout\") {
-						alert('got timeout');
-					} else {
-											//alert(message);
-					}
-				}
-				}).always(function() {
-					userform.find('input').prop(\"disabled\", true);
-				});
-
-				return false;
-				});
-		";
+		$data['js_inline'] = "$.get('http://aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid={$this->participant->phone_number}&sp=jak');";
 
 		// Load site template
 		$this->load->view('template/public/template', $this->load->vars($data));
-				
+
 	}
 }
 

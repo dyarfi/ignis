@@ -1112,7 +1112,18 @@ class grocery_CRUD_Model_Driver extends grocery_CRUD_Field_Types {
                 header('Access-Control-Allow-Headers: X-File-Name, X-File-Type, X-File-Size');
 
                 $allowed_files = $this->config->file_upload_allow_file_types;
-                $reg_exp = '/(\\.|\\/)(' . $allowed_files . ')$/i';
+                //$reg_exp = '/(\\.|\\/)(' . $allowed_files . ')$/i';
+
+                $reg_exp = '';
+                if(!empty($upload_info->allowed_file_types)){
+
+                    $reg_exp = '/(\\.|\\/)('.$upload_info->allowed_file_types.')$/i';
+
+                } else {
+
+                    $reg_exp = '/(\\.|\\/)('.$allowed_files.')$/i';
+
+                }
 
                 $max_file_size_ui = $this->config->file_upload_max_file_size;
                 $max_file_size_bytes = $this->_convert_bytes_ui_to_bytes($max_file_size_ui);
@@ -1341,8 +1352,8 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver {
         }
 
         // Convert to UTF-16LE and Prepend BOM
-        $string_to_export = "\xFF\xFE" . mb_convert_encoding($string_to_export, 'UTF-16LE', 'UTF-8');
-
+        //$string_to_export = "\xFF\xFE" . mb_convert_encoding($string_to_export, 'UTF-16LE', 'UTF-8');
+                
         $filename = "export-" . date("Y-m-d_H:i:s") . ".xls";
 
         header('Content-type: application/vnd.ms-excel;charset=UTF-16LE');
@@ -1478,6 +1489,10 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver {
 
     protected function showAddForm() {
         $this->set_js_lib($this->default_javascript_path . '/' . grocery_CRUD::JQUERY);
+        
+        // Custom Jquery UI        
+        $this->set_css($this->default_css_path . '/ui/simple/' . grocery_CRUD::JQUERY_UI_CSS);
+        $this->set_js_lib($this->default_javascript_path . '/jquery_plugins/ui/' . grocery_CRUD::JQUERY_UI_JS);
 
         $data = $this->get_common_data();
         $data->types = $this->get_field_types();
@@ -1501,6 +1516,10 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver {
 
     protected function showEditForm($state_info) {
         $this->set_js_lib($this->default_javascript_path . '/' . grocery_CRUD::JQUERY);
+
+        // Custom Jquery UI
+        $this->set_css($this->default_css_path . '/ui/simple/' . grocery_CRUD::JQUERY_UI_CSS);
+        $this->set_js_lib($this->default_javascript_path . '/jquery_plugins/ui/' . grocery_CRUD::JQUERY_UI_JS);
 
         $data = $this->get_common_data();
         $data->types = $this->get_field_types();
@@ -2170,7 +2189,7 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver {
 
     protected function get_upload_file_input($field_info, $value) {
         $this->load_js_uploader();
-
+        
         //Fancybox
         $this->load_js_fancybox();
 
@@ -2178,7 +2197,7 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver {
 
         $unique = mt_rand();
 
-        $allowed_files = $this->config->file_upload_allow_file_types;
+        $allowed_files = $field_info->extras->allowed_file_types ? $field_info->extras->allowed_file_types : $this->config->file_upload_allow_file_types;
         $allowed_files_ui = '.' . str_replace('|', ',.', $allowed_files);
         $max_file_size_ui = $this->config->file_upload_max_file_size;
         $max_file_size_bytes = $this->_convert_bytes_ui_to_bytes($max_file_size_ui);
@@ -4273,7 +4292,7 @@ class Grocery_CRUD extends grocery_CRUD_States {
      * @param string $field_name
      * @param string $upload_path
      */
-    public function set_field_upload($field_name, $upload_dir = '') {
+    public function set_field_upload($field_name, $upload_dir = '', $allowed_file_types = '') {
         $upload_dir = !empty($upload_dir) && substr($upload_dir, -1, 1) == '/' ? substr($upload_dir, 0, -1) : $upload_dir;
         $upload_dir = !empty($upload_dir) ? $upload_dir : 'assets/uploads/files';
 
@@ -4286,6 +4305,7 @@ class Grocery_CRUD extends grocery_CRUD_States {
         $this->upload_fields[$field_name] = (object) array(
                     'field_name' => $field_name,
                     'upload_path' => $upload_dir,
+                    'allowed_file_types' => $allowed_file_types,
                     'encrypted_field_name' => $this->_unique_field_name($field_name));
         return $this;
     }
@@ -4433,13 +4453,13 @@ class UploadHandler {
                 $write_image = 'imagejpeg';
                 break;
             case 'gif':
-                @imagecolortransparent($new_img, @imagecolorallocate($new_img, 0, 0, 0));
+                @imagecolortransparent($new_img, @imagecolorallocate($new_img, 255, 255, 255));
                 $src_img = @imagecreatefromgif($file_path);
                 $write_image = 'imagegif';
                 break;
             case 'png':
-                @imagecolortransparent($new_img, @imagecolorallocate($new_img, 0, 0, 0));
-                @imagealphablending($new_img, false);
+                @imagecolortransparent($new_img, @imagecolorallocate($new_img, 255, 255, 255));
+                @imagealphablending($new_img, true);
                 @imagesavealpha($new_img, true);
                 $src_img = @imagecreatefrompng($file_path);
                 $write_image = 'imagepng';
