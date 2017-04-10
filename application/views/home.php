@@ -12,11 +12,11 @@
           <?php /*if ($this->participant && $this->participant->completed != 1) { */ ?>
           <?php /*if (!$this->participant) {*/ ?>
               <div>
-                <?php if (!$this->participant) { ?>
+                <?php if (!$this->participant && @$this->participant->completed !=1) { ?>
                 <?php echo form_open(base_url('account/update_account'),['enctype'=>'multipart/form-data','role'=>'form','name'=>'form_account','id'=>'form_account','class'=>'form-horizontal']); ?>
                 <div class="indentity-form">
                   <div class="body-indentity">
-                        <h1>BELI <span class="font-bold">IGNIS</span><br><span class="font-small">SEKARANG</span></h1>
+                        <h3><span class="font-bold">Isi form untuk mendapatkan hadiah langsung</span><br><span class="font-small"></span></h3>
                         <div class="form-group">
                             <!--label for="inputName" class="control-label col-xs-4 text-danger">Nama Lengkap</label-->
                             <div>
@@ -35,12 +35,6 @@
                                 <input type="text" class="form-control" id="inputPhone" name="phone_number" placeholder="No. Hp" value="<?php echo @$this->participant->phone_number;?>">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <!--label for="inputId" class="control-label col-xs-4 text-danger">No. ID</label-->
-                            <div>
-                                <input type="text" class="form-control" id="inputId" placeholder="KTP / SIM" name="id_number" value="<?php echo @$this->participant->id_number;?>">
-                            </div>
-                        </div>
                         <div class="form-group captcha-css">
                             <!--label for="inputCaptcha" class="control-label col-xs-4 text-danger">Captcha</label-->
                             <div class="col-md-8">
@@ -57,18 +51,18 @@
                     <fieldset><legend class="text-white">Atau login dengan akun sosial anda untuk melanjutkan</legend>
                         <ul class="list-inline">
                             <li>
-                                <a href="javascript:void(0);" class="btn btn-primary btn-sm facebook" id="facebook" onclick="popupCenter('<?php echo base_url('hauth/login/Facebook');?>', 'Facebook',480,520);">
-                                    <span class="fa fa-facebook fa-1x"></span>&nbsp;&nbsp;Login Facebook
+                                <a href="javascript:void(0);" class="btn btn-sm btn-primary facebook" id="facebook" onclick="popupCenter('<?php echo base_url('hauth/login/Facebook');?>', 'Facebook',480,520);">
+                                    <span class="fa fa-facebook fa-1x"></span>&nbsp;&nbsp;Facebook
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="btn btn-default btn-sm btn-info twitter" id="twitter" onclick="popupCenter('<?php echo base_url('hauth/login/Twitter');?>', 'Twitter',480,520);">
-                                    <span class="fa fa-twitter fa-1x"></span>&nbsp;&nbsp;Login Twitter
+                                <a href="javascript:void(0);" class="btn btn-sm btn-info twitter" id="twitter" onclick="popupCenter('<?php echo base_url('hauth/login/Twitter');?>', 'Twitter',480,520);">
+                                    <span class="fa fa-twitter fa-1x"></span>&nbsp;&nbsp;Twitter
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="btn btn-default btn-sm btn-danger googleplus" id="google" onclick="popupCenter('<?php echo base_url('hauth/login/Google');?>', 'Google',480,520);">
-                                    <span class="fa fa-google-plus fa-1x"></span>&nbsp;&nbsp;Login Google
+                                <a href="javascript:void(0);" class="btn btn-sm btn-danger google" id="google" onclick="popupCenter('<?php echo base_url('hauth/login/Google');?>', 'Google',480,520);">
+                                    <span class="fa fa-google-plus fa-1x"></span>&nbsp;&nbsp;Google
                                 </a>
                             </li>
                         </ul>
@@ -78,8 +72,8 @@
                 <?php } else { ?>
                     <span class="text-white">Terima Kasih telah menggunakan Account<?php echo ' '.$this->input->get('redirect');?> Anda. Silahkan melanjutkan mengisi form diatas.</span>
                 <?php } ?>
-                <div class="submit-quiz" style="text-align: center; margin: 20px 0 20px auto;">
-                  <button class="btn btn-hero btn-sm btn-danger" role="button">SUBMIT</button>
+                <div class="submit-quiz" style="text-align: center; margin: 20px 0 100px auto;">
+                  <button class="btn btn-hero btn-md btn-danger" role="button">SUBMIT</button>
                   <div class="tnc" style="margin: 10px 0;"><a href="<?php echo base_url('page/terms-and-conditions');?>">Syarat &amp; Ketentuan</a></div>
                 </div>
                 <?php echo form_close(); ?>

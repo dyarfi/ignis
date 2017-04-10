@@ -158,8 +158,8 @@ class Authenticate extends CI_Controller {
 		// Set user's last login
 	    $this->Users->setLastLogin(@Acl::user()->id);
 
-	    // Destroy user session
-	    session_destroy();
+		// Destroy user session
+	    $this->session->sess_destroy();	    
 
 	    // Redirect admin to refresh
 	    redirect(ADMIN.'authenticate');

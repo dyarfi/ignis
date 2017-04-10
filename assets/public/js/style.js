@@ -11,7 +11,7 @@ $( document ).ready(function() {
     $('.popup_account').click(function() {
         $.fancybox.open({
              autoSize : false,
-             width : "64%",
+             width : "68%",
              height : "auto",
              content : $( "#result" ).load( base_URL + "account .boxed-grey" )
         });

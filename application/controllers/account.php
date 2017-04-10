@@ -358,7 +358,7 @@ class Account extends Public_Controller {
                         //'address' => '',
                         'phone_number'=> '',
                         //'phone_home'  => '',
-                        'id_number'   => '',
+                        //'id_number'   => '',
 						'captcha'     => '');
 
         $errors	= $fields;
@@ -368,7 +368,7 @@ class Account extends Public_Controller {
         //$this->form_validation->set_rules('address', 'Alamat','trim|required');
         $this->form_validation->set_rules('phone_number', 'No. Hp','trim|numeric|required');
         //$this->form_validation->set_rules('phone_home', 'No. Telp','trim|numeric|required');
-        $this->form_validation->set_rules('id_number', 'No. ID','trim|required');
+        //$this->form_validation->set_rules('id_number', 'No. ID','trim|required');
 		$this->form_validation->set_rules('captcha', 'Captcha Code','trim|required|xss_clean|callback_match_captcha');
         //$this->form_validation->set_rules('phone_number', 'Phone Number','trim|is_numeric|xss_clean|max_length[25]');
         //$this->form_validation->set_rules('password', 'Password','trim|required');
@@ -415,7 +415,7 @@ class Account extends Public_Controller {
                 //$object['address']         = $this->input->get_post('address', true);
 				$object['phone_number']    = $this->input->get_post('phone_number', true);
                 //$object['phone_home']      = $this->input->get_post('phone_home', true);
-                $object['id_number']       = $this->input->get_post('id_number', true);
+                //$object['id_number']       = $this->input->get_post('id_number', true);
 				$object['verify']		   = strtoupper($this->input->get_post('captcha', true) .'-'.random_string('alnum',2));
                 $object['status']          = '1';
                 $object['completed']       = '1';
@@ -451,37 +451,66 @@ class Account extends Public_Controller {
 
 				}
 
-                //print_r($this->participant);
-                //exit;
-
+				// Remove unwanted string and Set email from
+                //$from = str_replace('http://www.', '','no-reply@'.$_SERVER['HTTP_HOST']);
 				/*
-                if (!empty($return)) {
+                $from = ADMIN_REPLY;
 
-                    // Data to send to email activation views
-                    $message['site_name']       = config_item('developer_name');
+                // Set subject email
+                $subject = $this->title_name->value.' - '.lang('contact_info');
+
+                // Data to send to public
+                $message['site_name']       = $this->title_name->value;
+                $message['site_link']       = base_url();
+                $message['header']          = lang('thank_you');
+                $message['messages']        = sprintf($this->lang->line('email_contact_message'),$fields['name']);
+                $message['site_copyright']  = $this->copyright->value;
+
+                // Set email template
+                $email_template = $this->load->view('admin/emails/site_contact',$this->load->vars($message),TRUE);
+
+                // Set email to clear first
+                $this->email->clear();
+
+                // Set email content
+                $this->email->from($from, $this->title_name->value);
+                $this->email->to($fields['email']);
+                $this->email->reply_to($from, $this->title_name->value);
+                $this->email->subject($subject);
+                $this->email->message($email_template);
+
+                // Check if sent to public
+                if($this->email->send()) {
+
+                    // Data to send to email notification to admin
+                    $message['site_name']       = $this->title_name->value;
                     $message['site_link']       = base_url();
-                    $message['name']            = $activated->name;
-                    $message['site_copyright']  = $this->Settings->getByParameter('copyright')->value;
-                    $message['conference']      = $this->Conferences->getConferenceLatest();
-                    $message['activation']      = base_url('account/activation?confirm='.base64_encode($object['verify'].'-:-'.$object['email']).'');
+                    $message['header']          = lang('information');
+                    $message['messages']        = sprintf($this->lang->line('email_contact_message_admin'), $this->title_name->value, $fields['email'], $fields['subject'], $fields['name'], $fields['gender'], $fields['email'], $fields['phone'], $fields['address'], $fields['subject'], $fields['message']);
+                    $message['site_copyright']  = $this->copyright->value;
 
                     // Set email template
-                    $email_template = $this->load->view('admin/emails/account_is_active',$this->load->vars($message),TRUE);
+                    $email_template = $this->load->view('admin/emails/site_contact',$this->load->vars($message),TRUE);
 
-                    $this->email->from('noreply@simplewavenet.com');
-                    $this->email->to($activated->email);
-                    $this->email->reply_to('noreply@simplewavenet.com');
-                    $this->email->subject('Account is activated | FISIP UIN Jakarta');
-                    $this->email->message($email_template);
-                    $this->email->send();
+                    // Set email to sent
+                    $to      = $fields['subject_to'];
 
+                    // Set subject
+                    $subject = $this->title_name->value.' - '.lang('contact_info');
+
+                    foreach ($this->emails as $key => $value) {
+                        $this->email->clear();
+                        $this->email->from($from, $this->title_name->value);
+                        $this->email->to($value->email);
+                        $this->email->reply_to($from, $this->title_name->value);
+                        $this->email->subject($subject);
+                        $this->email->message($email_template);
+                        $this->email->send();
+                        usleep(1000);
+                    }
 
                 }
-                */
-
-                // Set message
-               // $this->session->set_flashdata('message','Please check your Email : <b>'.$object['email'].'</b> for the Account Activation!');
-
+				*/
 				if ($this->input->is_ajax_request()) {
 					// Send json message
 					$result['result']	= 'OK';
@@ -493,13 +522,6 @@ class Account extends Public_Controller {
 		    }
 
 	    }
-
-        // Account is not existed
-        // $result['result']['code'] = 0;
-        // $result['result']['text'] = 'Email or User not found';
-
-        // Captcha data
-        // $data['captcha'] = $this->Captcha->image();
 
 		// Set error data to view
 		$data['errors']  = $errors;

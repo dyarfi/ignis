@@ -38,8 +38,9 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',	'x+b');
 
 /* Custom Constants */
 
-// Define administrator access 
+// Define administrator access
 define('ADMIN','admin-panel/');
-
+// Define Admin reply email
+define('ADMIN_REPLY', 'noreply@suzuki.co.id');
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

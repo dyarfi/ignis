@@ -32,8 +32,8 @@ class HAuth extends Public_Controller {
 			{
 				log_message('debug', "controllers.HAuth.login: service $provider enabled, trying to authenticate.");
 				$service = $this->hybridauthlib->authenticate($provider);
-                print_r($service);
-                exit;
+                //print_r($service);
+                //exit;
                 if ($service->isUserConnected())
 				{
 					log_message('debug', 'controller.HAuth.login: user authenticated.');
