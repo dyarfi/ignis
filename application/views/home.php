@@ -1,8 +1,6 @@
 <section class="container-fluid main-content">
-
   <!-- start main content -->
   <div class="container">
-    
     <div class="col-md-8 mobil">
       <img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/mobil-ignis-2.jpg');?>" alt="suzuki" />
     </div>
@@ -55,22 +53,22 @@
                   </div>
                 </div>
                 <?php if (!$this->participant) { ?>
-                <div class="boxed-grey marginbot-50">
-                    <fieldset class="marginbot-50"><legend class="text-white">Atau login dengan akun sosial anda untuk melanjutkan</legend>
+                <div class="boxed-grey">
+                    <fieldset><legend class="text-white">Atau login dengan akun sosial anda untuk melanjutkan</legend>
                         <ul class="list-inline">
                             <li>
-                                <a href="javascript:void(0);" class="btn btn-primary btn-md facebook" id="facebook" onclick="popupCenter('<?php echo base_url('hauth/login/Facebook');?>', 'Facebook',480,520);">
-                                    <span class="fa fa-facebook"></span>&nbsp;&nbsp;Login Facebook
+                                <a href="javascript:void(0);" class="btn btn-primary btn-sm facebook" id="facebook" onclick="popupCenter('<?php echo base_url('hauth/login/Facebook');?>', 'Facebook',480,520);">
+                                    <span class="fa fa-facebook fa-1x"></span>&nbsp;&nbsp;Login Facebook
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="btn btn-default btn-md btn-info twitter" id="twitter" onclick="popupCenter('<?php echo base_url('hauth/login/Twitter');?>', 'Twitter',480,520);">
-                                    <span class="fa fa-twitter"></span>&nbsp;&nbsp;Login Twitter
+                                <a href="javascript:void(0);" class="btn btn-default btn-sm btn-info twitter" id="twitter" onclick="popupCenter('<?php echo base_url('hauth/login/Twitter');?>', 'Twitter',480,520);">
+                                    <span class="fa fa-twitter fa-1x"></span>&nbsp;&nbsp;Login Twitter
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="btn btn-default btn-md btn-danger googleplus" id="google" onclick="popupCenter('<?php echo base_url('hauth/login/Google');?>', 'Google',480,520);">
-                                    <span class="fa fa-google-plus"></span>&nbsp;&nbsp;Login Google
+                                <a href="javascript:void(0);" class="btn btn-default btn-sm btn-danger googleplus" id="google" onclick="popupCenter('<?php echo base_url('hauth/login/Google');?>', 'Google',480,520);">
+                                    <span class="fa fa-google-plus fa-1x"></span>&nbsp;&nbsp;Login Google
                                 </a>
                             </li>
                         </ul>
@@ -80,7 +78,7 @@
                 <?php } else { ?>
                     <span class="text-white">Terima Kasih telah menggunakan Account<?php echo ' '.$this->input->get('redirect');?> Anda. Silahkan melanjutkan mengisi form diatas.</span>
                 <?php } ?>
-                <div class="submit-quiz" style="text-align: center; margin: 10px 0;">
+                <div class="submit-quiz" style="text-align: center; margin: 20px 0 20px auto;">
                   <button class="btn btn-hero btn-sm btn-danger" role="button">SUBMIT</button>
                   <div class="tnc" style="margin: 10px 0;"><a href="<?php echo base_url('page/terms-and-conditions');?>">Syarat &amp; Ketentuan</a></div>
                 </div>
@@ -93,15 +91,11 @@
                 <?php } ?>
             </div>
         <?php /*}*/ ?>
-
       </div>
     </div>
-
   </div>
   </div>
-
 </section> <!-- /container -->
-
 <?php if ($articles) { ?>
       <div class="bar-title">
         <div class="article"><h3>ARTICLES</h3></div>
@@ -129,4 +123,3 @@
       </div>
 <?php } else { ?>
 <?php } ?>
-

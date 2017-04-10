@@ -4,7 +4,7 @@
 class Authenticate extends CI_Controller {
 
 	public function __construct() {
-	    parent::__construct();		
+	    parent::__construct();
 
 	    // Load user, profile, groups and group permissions models
 	    $this->load->model('Users');
@@ -18,28 +18,28 @@ class Authenticate extends CI_Controller {
 	    $this->load->model('ModulePermissions');
 
 	    // Load Configurations, UserHistories and Captcha
-	    $this->load->model('Configurations');		
-	    $this->load->model('UserHistories');	
+	    $this->load->model('Configurations');
+	    $this->load->model('UserHistories');
 	    $this->load->model('Captcha');
-		$this->load->model('Sessions');	
-                
+		$this->load->model('Sessions');
+
         // Load Admin config
 		$this->configs = $this->load->config('admin/admin',true);
-                
+
 	}
-    
-    public function index () { 
-        
+
+    public function index () {
+
         // Check if already login
-        self::login(); 
-    
+        self::login();
+
     }
-	
-	public function login () {	
-        
+
+	public function login () {
+
         // User login checking
         self::log_check();
-        
+
 	    // POST checking
 	    if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -52,7 +52,7 @@ class Authenticate extends CI_Controller {
 
 		    }
 		    else {
-			
+
 		    }
 
 		    //Make sure login object was true
@@ -62,18 +62,18 @@ class Authenticate extends CI_Controller {
 		    }
 		    //Check if already logged in
 		    if($this->session->userdata('username') == $userObj['username']) {
-			//User is already logged in.				
+			//User is already logged in.
 			//return false;
 
 		    }
 
 		    // Initialize install
-		    $this->Users->install();					   
+		    $this->Users->install();
 		    $this->UserGroups->install();
 			$this->ModuleLists->install();
 		    $this->ModelLists->install();
-		    $this->Configurations->install();		    
-			$this->Captcha->install();		
+		    $this->Configurations->install();
+			$this->Captcha->install();
 			$this->Sessions->install();
 
 		    //Check User login info
@@ -99,7 +99,7 @@ class Authenticate extends CI_Controller {
 			    if (intval($user_group->full_backend_access) === 1) {
 					// Checking module access for ADMINISTRATOR Level
 					$this->ModuleLists->module_check();
-			    } 
+			    }
 
 			    // Get module list by user
 			    $module_list	= $this->ModuleLists->getModules($user->group_id);
@@ -111,8 +111,8 @@ class Authenticate extends CI_Controller {
 			    $user_session->username = $user->username;
 			    $user_session->email = $user->email;
 			    $user_session->group_id = $user->group_id;
-			    $user_session->status = $user->status;				
-			    $user_session->last_login = $user->last_login;				
+			    $user_session->status = $user->status;
+			    $user_session->last_login = $user->last_login;
 			    $user_session->logged_in = true;
 			    $user_session->name = $this->UserProfiles->getName($user->id);
 
@@ -124,14 +124,14 @@ class Authenticate extends CI_Controller {
 
 			    //Set session data
 			    $this->session->set_userdata($ci_session);
-			    
+
 			    // Redirect to dashboard
 				redirect(ADMIN.'dashboard/index?active=current');
-			    
+
 		    } else {
 
-			    $userObj = 'No user with that account';				
-			    $this->session->set_flashdata('flashdata', $userObj);				
+			    $userObj = 'No user with that account';
+			    $this->session->set_flashdata('flashdata', $userObj);
 
 			    redirect(ADMIN.'authenticate/login');
 		    }
@@ -139,41 +139,41 @@ class Authenticate extends CI_Controller {
 
 	    // Load js for administrator login
 		$data['js_files'] = [base_url('assets/admin/scripts/custom/login-soft.js')];
-		
+
 		// Load CSS for the template
 		$data['css_files'] = [base_url('assets/admin/css/pages/login-soft.css')];
-		
+
 		// Load JS execution
 		$data['js_inline'] = "Login.init();";
 
 		// Set main template
 	    $data['main']	= 'admin/login';
-	    
+
 	    // Load admin template
 	    $this->load->view('template/admin/login', $this->load->vars($data));
 	}
-	
-	public function logout() {
-        
-		// Set user's last login 
-	    $this->Users->setLastLogin(@Acl::user()->id);		
 
-	    // Destroy user session		
-	    Acl::session_destroy();
-        
+	public function logout() {
+
+		// Set user's last login
+	    $this->Users->setLastLogin(@Acl::user()->id);
+
+	    // Destroy user session
+	    session_destroy();
+
 	    // Redirect admin to refresh
 	    redirect(ADMIN.'authenticate');
 
     }
-    
+
     private function log_check ($session='') {
-        
+
         // Check if user is logged in or not
 	    if ($this->session->userdata('user_session')->id != '') {
             /** Redirect to dashboards **/
-			redirect(str_replace('{admin_id}', $this->session->userdata('user_session')->id, $this->configs['default_page']));            
-	    } 
-      
+			redirect(str_replace('{admin_id}', $this->session->userdata('user_session')->id, $this->configs['default_page']));
+	    }
+
     }
-	
+
 }

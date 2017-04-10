@@ -162,10 +162,88 @@ class Home extends Public_Controller {
 
 	// Redirect if particpant already participated
 	public function participated () {
+		// Set articles data
+		$data['articles'] =	$this->Articles->getAllArticles();
 
-		usleep(500000);
-		redirect('?refresh=true','refresh');
+		// Set site title page with module menu
+		$data['page_title'] = 'Suzuki Ignis Indonesia';
 
+		// Set contact email info data
+		$data['email_info']	= $this->Settings->getByParameter('email_info');
+
+		// Set contactus address info data
+		$data['contactus_address']	= $this->Settings->getByParameter('contactus_address');
+
+		// Load participant data if existed
+		$data['participant'] 	= $this->participant;
+
+		// Captcha data
+		$data['captcha']	= $this->Captcha->image();
+
+		// Set main template
+		$data['main'] = 'home';
+
+		// Load js execution
+		$data['js_inline'] = "$('.popup_account').click()";
+		//$data['js_inline'] = "";
+
+		// Load js execution
+		$data['js_inline'] .= "
+		$('#submit_email').submit(function(e) {
+			e.preventDefault();
+			// default form var
+			var userform = $(this);
+			// process the form
+			$.ajax({
+				type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+					//url       : 'process.php', // the url where we want to POST
+				data        : $(this).serialize(), // our data object
+				dataType    : 'json', // what type of data do we expect back from the server
+				encode      : true,
+					//beforeSend: function(){
+						//userform.find('input').prop(\"disabled\", true);
+					//},
+				complete: function(message) {
+					var msg = message.responseJSON;
+					userform.find('.msg').empty();
+					userform.find('.msg')
+					.html('<div class=\"alert alert-danger msg\">'
+						+'<button class=\"close\" data-close=\"alert\"></button>'
+						+msg.result.text+'</div>');
+
+				if (msg.result.code === 1) {
+					userform.find('input').prop(\"disabled\", true);
+					setTimeout(function() {
+												// Do something after 5 seconds
+						window.location.href = base_URL + 'quiz';
+					}, 2000);
+				} else {
+					userform.find('input').prop(\"disabled\", false);
+				}
+					// userform.find('input').prop(\"disabled\", false);
+
+					// $('.reload_captcha').click();
+					// alert(msg.result);
+					// console.log(msg.result);
+				},
+				error: function(x,message,t) {
+					if(message===\"timeout\") {
+						alert('got timeout');
+					} else {
+											//alert(message);
+					}
+				}
+				}).always(function() {
+					userform.find('input').prop(\"disabled\", true);
+				});
+
+				return false;
+				});
+		";
+
+		// Load site template
+		$this->load->view('template/public/template', $this->load->vars($data));
+				
 	}
 }
 

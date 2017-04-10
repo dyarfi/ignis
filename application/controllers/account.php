@@ -355,9 +355,9 @@ class Account extends Public_Controller {
         $fields	= array(
                         'name'  => '',
                         'email' => '',
-                        'address' => '',
+                        //'address' => '',
                         'phone_number'=> '',
-                        'phone_home'  => '',
+                        //'phone_home'  => '',
                         'id_number'   => '',
 						'captcha'     => '');
 
@@ -365,9 +365,9 @@ class Account extends Public_Controller {
 
         $this->form_validation->set_rules('name', 'Name Lengkap', 'trim|required|min_length[5]|max_length[32]|xss_clean');
 		$this->form_validation->set_rules('email', 'Email','trim|required|max_length[55]|xss_clean');
-        $this->form_validation->set_rules('address', 'Alamat','trim|required');
+        //$this->form_validation->set_rules('address', 'Alamat','trim|required');
         $this->form_validation->set_rules('phone_number', 'No. Hp','trim|numeric|required');
-        $this->form_validation->set_rules('phone_home', 'No. Telp','trim|numeric|required');
+        //$this->form_validation->set_rules('phone_home', 'No. Telp','trim|numeric|required');
         $this->form_validation->set_rules('id_number', 'No. ID','trim|required');
 		$this->form_validation->set_rules('captcha', 'Captcha Code','trim|required|xss_clean|callback_match_captcha');
         //$this->form_validation->set_rules('phone_number', 'Phone Number','trim|is_numeric|xss_clean|max_length[25]');
@@ -412,9 +412,9 @@ class Account extends Public_Controller {
 				$object['id']              = $participant_id;
                 $object['name']            = $this->input->get_post('name', true);
                 $object['email']           = $this->input->get_post('email', true);
-                $object['address']         = $this->input->get_post('address', true);
+                //$object['address']         = $this->input->get_post('address', true);
 				$object['phone_number']    = $this->input->get_post('phone_number', true);
-                $object['phone_home']      = $this->input->get_post('phone_home', true);
+                //$object['phone_home']      = $this->input->get_post('phone_home', true);
                 $object['id_number']       = $this->input->get_post('id_number', true);
 				$object['verify']		   = strtoupper($this->input->get_post('captcha', true) .'-'.random_string('alnum',2));
                 $object['status']          = '1';
@@ -678,12 +678,12 @@ class Account extends Public_Controller {
 
         // Check captcha if empty
 		if ($captcha == '') {
-            $this->form_validation->set_message('match_captcha', 'The %s code can not be empty.');
+            $this->form_validation->set_message('match_captcha', lang('required'));
             return false;
 		}
 		// Check captcha if match
 		else if (!$this->Captcha->match($captcha)) {
-            $this->form_validation->set_message('match_captcha', 'The %s code not match.');
+            $this->form_validation->set_message('match_captcha', lang('regex_match'));
             return false;
         } else {
             return true;

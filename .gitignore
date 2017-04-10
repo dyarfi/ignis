@@ -4,3 +4,16 @@
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+
+.DS_Store
+desktop.ini
+
+application/tmp/*
+application/cache/*
+application/config/database.php
+!application/cache/index.html
+!application/cache/.htaccess
+
+uploads/*
+assets/static/img/*
+assets/static/captcha/image/*.jpg
