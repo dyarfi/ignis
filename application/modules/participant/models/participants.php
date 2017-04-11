@@ -205,6 +205,17 @@ class Participants Extends MY_Model {
 		return $data;
 	    }
 	}
+
+    // Get count from Social Login
+    public function getCountParticipantByIdentity() {
+
+        $sql = 'SELECT identity , count( id ) as count FROM `'. $this->table .'` WHERE status =1 GROUP BY identity;';
+
+        $query = $this->db->query($sql);
+
+	    return $query->result_object();
+    }
+
 	// Get all Participants Join stats by join_date
 	public function getJoinStats() {
 

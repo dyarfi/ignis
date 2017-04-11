@@ -68,8 +68,12 @@
                 <?php } ?>
                 <div class="submit-quiz">
                   <button class="btn btn-hero btn-lg btn-danger" role="button">SUBMIT</button>
-                  <span class="center-block agreed">* Dengan menekan tombol <b>SUBMIT</b> maka Saya setuju untuk mengirimkan informasi pribadi Saya kepada <a href="http://www.suzuki.co.id/">Suzuki Indonesia</a> dan mitranya untuk menghubungi Saya. Dengan memberikan email dan no handphone, Saya telah menyetujui untuk menerima semua pemberitahuan melalui <a href="http://www.suzuki.co.id/">Suzuki Indonesia</a>.</span>
-                  <div class="tnc"><a class="font-bold" href="<?php echo base_url('page/terms-and-conditions');?>">Syarat &amp; Ketentuan</a></div>
+                  <span class="center-block agreed">
+                      Dengan menekan tombol <b>SUBMIT</b> berarti <b>ANDA</b> setuju untuk tunduk kepada <a href="<?php echo base_url('page/terms-and-conditions');?>" class="font-bold">Syarat &amp; Ketentuan</a> yang berlaku.
+                  </span>
+                  <div class="tnc">
+                      <a class="font-bold hidden" href="<?php echo base_url('page/terms-and-conditions');?>">Syarat &amp; Ketentuan</a>
+                  </div>
                 </div>
                 <?php echo form_close(); ?>
             </div>

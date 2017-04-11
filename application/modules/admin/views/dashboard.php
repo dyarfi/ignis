@@ -12,14 +12,14 @@
 			<div class="col-md-12">
 				<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 				<h3 class="page-title">
-				Dashboard <small><a href="<?=$this->config->item('developer_url');?>" class="logoHandler">
-					<?=$this->config->item('developer_name');?>
+				Dashboard <small><a href="<?php echo $this->config->item('developer_url');?>" class="logoHandler">
+					<?php echo $this->config->item('developer_name');?>
 				</a></small>
 				</h3>
 				<ul class="page-breadcrumb breadcrumb">
 					<li>
 						<i class="fa fa-home"></i>
-						<a href="<?=base_url(ADMIN.'admin/dashboard/index')?>">
+						<a href="<?php echo base_url(ADMIN.'admin/dashboard/index')?>">
 							Home
 						</a>
 						<i class="fa fa-angle-right"></i>
@@ -37,20 +37,46 @@
 		<!-- END PAGE HEADER-->
 		<!-- BEGIN DASHBOARD STATS -->
 		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hidden">
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 				<div class="dashboard-stat blue">
 					<div class="visual">
-						<i class="fa fa-comments"></i>
+						<i class="fa fa-group"></i>
 					</div>
 					<div class="details">
 						<div class="number">
-							 <!--?=$this->vote_model->count_allvote()?-->
+							 <?php echo $tparticipants;?>
 						</div>
 						<div class="desc">
-							 Total Vote
+							 <small>Active Participants</small>
 						</div>
 					</div>
-					<a class="more" href="<?=base_url()?>__admin_vote/all">
+					<a class="more" href="<?php echo base_url(ADMIN .'participant/index?active=current')?>">
+						 View more <i class="m-icon-swapright m-icon-white"></i>
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				<div class="dashboard-stat yellow">
+					<div class="visual">
+						<i class="fa fa-check-circle"></i>
+					</div>
+					<div class="details" style="line-height:1.1em; padding-top:10px">
+						<?php foreach ($tidentities as $identity) { ?>
+							<!--div class="number small">
+								 <?php echo $identity->count;?>
+							</div-->
+							<div class="desc">
+								 <small><b><?php echo ($identity->identity) ? $identity->identity : 'Website';?> (<?php echo $identity->count;?>)</b></small>
+							</div>
+						<?php } ?>
+						<!--div class="number">
+							 <?php echo $tparticipants;?>
+						</div>
+						<div class="desc small">
+							 Total Registered<br>Participants
+						</div-->
+					</div>
+					<a class="more" href="<?php echo base_url(ADMIN .'participant/index?active=current')?>">
 						 View more <i class="m-icon-swapright m-icon-white"></i>
 					</a>
 				</div>
@@ -58,17 +84,17 @@
 			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 				<div class="dashboard-stat green">
 					<div class="visual">
-						<i class="fa fa-group"></i>
+						<i class="fa fa-user"></i>
 					</div>
 					<div class="details">
 						<div class="number">
-							 <?=$tusers;?>
+							 <?php echo $tusers;?>
 						</div>
 						<div class="desc">
 							 Total User
 						</div>
 					</div>
-					<a class="more" href="<?=base_url(ADMIN.'user/index');?>">
+					<a class="more" href="<?php echo base_url(ADMIN.'user/index');?>">
 						 View more <i class="m-icon-swapright m-icon-white"></i>
 					</a>
 				</div>
