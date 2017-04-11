@@ -25,7 +25,6 @@ class Public_Controller extends MY_Controller {
 		$this->load->model('admin/Settings');
 		$this->load->model('page/PageMenus');
         $this->load->model('participant/Participants');
-        $this->load->model('participant/Attachments');
 
 		// Set default site copyright
 		$this->config->set_item('title_name', $this->Settings->getByParameter('title_name')->value);
@@ -103,24 +102,6 @@ class Public_Controller extends MY_Controller {
 
 		// Set participant session objects
 		$this->participant = $this->session->userdata('participant');
-
-		//$user->id 			= 1;
-		//$user->status 		= 0;
-		//$this->participant  	= $user;
-
-		// if (! $this->session->userdata('participant')) {
-
-			// Set public to logged in
-			// $this->logged_in = false;
-
-		//} else {
-
-			// Set temporary participant data
-			//$this->participant = $this->session->userdata ('participant');
-
-		//}
-
-		//print_r($this->session->userdata ('participant'));
 
 		$this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');

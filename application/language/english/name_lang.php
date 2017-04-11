@@ -88,10 +88,18 @@ $lang['check_email_activation'] = 'Check your email for member activation, thank
 $lang['email_account_activation'] = 'Click this <a href="%s">link</a> to activate your account, thank you!';
 $lang['email_account_activation_admin'] = 'Dear <b>%s</b>, <b>%s</b> has been register their account, thank you!';
 $lang['email_contact_message'] = 'Dear <b>%s</b>, thank you for contacting us. We will respond and reply your email as soon as possible.';
+$lang['email_contact_participant'] = 'Dear <b>%s</b>, thank you for registering to Suzuki Indonesia : <br/>'
+									.'Name : <b>%s</b><br>'
+									.'Email : <b>%s</b><br>'
+									.'Phone : <b>%s</b><br>'
+									.'Unique Code : <b>%s</b><br>'
+									.'<br/><br><br>Thank you,<br/><br/>'
+									.'<br><br>Suzuki Indonesia';
+
 $lang['email_contact_message_admin'] = 'Dear <b>%s</b>, someone contacting you via website : <b>%s</b> with the subject : <b>"%s"</b>. '
 									.'Please respond reply the email as soon as possible.<br><br>'
 									.'Name : <b>%s</b><br>'
-									.'Gender : <b>%s</b><br>'									
+									.'Gender : <b>%s</b><br>'
 									.'Email : <b>%s</b><br>'
 									.'Phone Number : <b>%s</b><br>'
 									.'Address : <b>%s</b><br>'

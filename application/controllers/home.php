@@ -11,10 +11,6 @@ class Home extends Public_Controller {
 
 		parent::__construct();
 
-		// Load User related model in admin module
-		$this->load->model('admin/Users');
-		$this->load->model('admin/UserProfiles');
-
 		// Load Setting data
 		$this->load->model('admin/Settings');
 		// Load CAPTCHA model
@@ -107,8 +103,6 @@ class Home extends Public_Controller {
 
 		// Set pages data
 		$data['page'] = $this->Pages->getPageByName($page);
-
-		//print_r($data['pages']);
 
 		// Set main template
 		//$data['main'] = 'page';

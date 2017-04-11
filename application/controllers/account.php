@@ -19,16 +19,6 @@ class Account extends Public_Controller {
 		$this->load->model('participant/Participants');
         //$this->load->model('participant/Attachments');
 
-		// Load Conference model
-		//$this->load->model('conference/Conferences');
-
-        // Load email library
-        //$this->load->library('email');
-
-        //print_r($this->participant);
-        //exit;
-        //print_r($this->session->userdata);
-
 	}
 
 	public function index() {
@@ -355,25 +345,15 @@ class Account extends Public_Controller {
         $fields	= array(
                         'name'  => '',
                         'email' => '',
-                        //'address' => '',
                         'phone_number'=> '',
-                        //'phone_home'  => '',
-                        //'id_number'   => '',
-						'captcha'     => '');
+        				'captcha'     => '');
 
         $errors	= $fields;
 
-        $this->form_validation->set_rules('name', 'Name Lengkap', 'trim|required|min_length[5]|max_length[32]|xss_clean');
-		$this->form_validation->set_rules('email', 'Email','trim|required|max_length[55]|xss_clean');
-        //$this->form_validation->set_rules('address', 'Alamat','trim|required');
-        $this->form_validation->set_rules('phone_number', 'No. Hp','trim|numeric|required');
-        //$this->form_validation->set_rules('phone_home', 'No. Telp','trim|numeric|required');
-        //$this->form_validation->set_rules('id_number', 'No. ID','trim|required');
-		$this->form_validation->set_rules('captcha', 'Captcha Code','trim|required|xss_clean|callback_match_captcha');
-        //$this->form_validation->set_rules('phone_number', 'Phone Number','trim|is_numeric|xss_clean|max_length[25]');
-        //$this->form_validation->set_rules('password', 'Password','trim|required');
-	    //$this->form_validation->set_rules('confirm_password', 'Confirm Password','trim|required|matches[password]');
-	    //$this->form_validation->set_rules('captcha', 'Captcha Code','trim|required|xss_clean|callback_match_captcha');
+        $this->form_validation->set_rules('name', 'Name Lengkap', 'trim|min_length[5]|max_length[32]|xss_clean|required');
+		$this->form_validation->set_rules('email', 'Email','trim|valid_email|max_length[55]|xss_clean|required');
+        $this->form_validation->set_rules('phone_number', 'No. Hp','trim|numeric|min_length[8]|max_length[25]|required');
+        $this->form_validation->set_rules('captcha', 'Captcha Code','trim|required|max_length[10]|xss_clean|callback_match_captcha');
 
         // Check if post is requested
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
@@ -412,11 +392,8 @@ class Account extends Public_Controller {
 				$object['id']              = $participant_id;
                 $object['name']            = $this->input->get_post('name', true);
                 $object['email']           = $this->input->get_post('email', true);
-                //$object['address']         = $this->input->get_post('address', true);
-				$object['phone_number']    = $this->input->get_post('phone_number', true);
-                //$object['phone_home']      = $this->input->get_post('phone_home', true);
-                //$object['id_number']       = $this->input->get_post('id_number', true);
-				$object['verify']		   = strtoupper($this->input->get_post('captcha', true) .'-'.random_string('alnum',2));
+                $object['phone_number']    = $this->input->get_post('phone_number', true);
+                $object['verify']		   = strtoupper($this->input->get_post('captcha', true) .'-'.random_string('alnum',2));
                 $object['status']          = '1';
                 $object['completed']       = '1';
 
@@ -453,7 +430,6 @@ class Account extends Public_Controller {
 
 				// Remove unwanted string and Set email from
                 //$from = str_replace('http://www.', '','no-reply@'.$_SERVER['HTTP_HOST']);
-				/*
                 $from = ADMIN_REPLY;
 
                 // Set subject email
@@ -463,7 +439,7 @@ class Account extends Public_Controller {
                 $message['site_name']       = $this->title_name->value;
                 $message['site_link']       = base_url();
                 $message['header']          = lang('thank_you');
-                $message['messages']        = sprintf($this->lang->line('email_contact_message'),$fields['name']);
+                $message['messages']        = sprintf($this->lang->line('email_contact_participant'),$object['name'],$object['name'],$object['email'],$object['phone_number'],$object['verify']);
                 $message['site_copyright']  = $this->copyright->value;
 
                 // Set email template
@@ -474,12 +450,16 @@ class Account extends Public_Controller {
 
                 // Set email content
                 $this->email->from($from, $this->title_name->value);
-                $this->email->to($fields['email']);
+                $this->email->to($object['email']);
                 $this->email->reply_to($from, $this->title_name->value);
                 $this->email->subject($subject);
                 $this->email->message($email_template);
 
-                // Check if sent to public
+				// Send email to participant
+				$this->email->send();
+
+				// Check if sent to public
+				/*
                 if($this->email->send()) {
 
                     // Data to send to email notification to admin
@@ -492,16 +472,13 @@ class Account extends Public_Controller {
                     // Set email template
                     $email_template = $this->load->view('admin/emails/site_contact',$this->load->vars($message),TRUE);
 
-                    // Set email to sent
-                    $to      = $fields['subject_to'];
-
                     // Set subject
                     $subject = $this->title_name->value.' - '.lang('contact_info');
 
                     foreach ($this->emails as $key => $value) {
                         $this->email->clear();
                         $this->email->from($from, $this->title_name->value);
-                        $this->email->to($value->email);
+                        $this->email->to('defrian.yarfi@gmail.com');
                         $this->email->reply_to($from, $this->title_name->value);
                         $this->email->subject($subject);
                         $this->email->message($email_template);
@@ -511,6 +488,7 @@ class Account extends Public_Controller {
 
                 }
 				*/
+
 				if ($this->input->is_ajax_request()) {
 					// Send json message
 					$result['result']	= 'OK';
@@ -550,10 +528,6 @@ class Account extends Public_Controller {
 
         // Check email link
         $participant = $this->Participants->getByEmail($email);
-
-        //print_r($participant);
-
-        //exit;
 
         // Default data setup
         $fields	= array(

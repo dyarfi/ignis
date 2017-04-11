@@ -88,10 +88,17 @@ $lang['check_email_activation'] = 'Mohon cek email anda untuk aktivasi akun, ter
 $lang['email_account_activation'] = 'Klik <a href="%s">link</a> ini untuk aktivasi akun anda, terima kasih!';
 $lang['email_account_activation_admin'] = 'Yth <b>%s</b>, <b>%s</b> telah mendaftarkan akun nya via website, terima kasih!';
 $lang['email_contact_message'] = 'Yth <b>%s</b>, Kami telah menerima permohonan anda. Anda akan kami hubungi Halo Suzuki.<br/><br/>Pada : Senin - Jumat 08.00 - 17.00<br/><br/> Untuk respon yang lebih cepat silahkan hubungi Halo Suzuki : 0800-1100-800';
+$lang['email_contact_participant'] = 'Yth <b>%s</b>, terima kasih telah mendaftarkan data pribadi anda ke Suzuki Indonesia : <br/>'
+									.'Nama : <b>%s</b><br>'
+									.'Email : <b>%s</b><br>'
+									.'Phone : <b>%s</b><br>'
+									.'Kode Unik : <b>%s</b><br>'
+									.'<br/><br><br>Terima Kasih,<br/><br/>'
+									.'<br><br>Suzuki Indonesia';
 $lang['email_contact_message_admin'] = 'Yth <b>%s</b>, seseorang telah menghubungi anda via website : <b>%s</b> dengan subjek pesan : <b>"%s"</b>, '
 									.'Mohon merespon dan membalas email tersebut secepatnya.<br><br>'
 									.'Nama : <b>%s</b><br>'
-									.'Gender : <b>%s</b><br>'									
+									.'Gender : <b>%s</b><br>'
 									.'Email : <b>%s</b><br>'
 									.'No. Telephone : <b>%s</b><br>'
 									.'Address : <b>%s</b><br>'

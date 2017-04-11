@@ -2,7 +2,8 @@
   <!-- start main content -->
   <div class="container">
     <div class="col-md-8 mobil">
-      <img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/mobil-ignis-2.jpg');?>" alt="suzuki" />
+      <?php // mobil-ignis-2.jpg  ?>
+      <img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/ignis-lamp.gif');?>" alt="Suzuki Ignis - Gear to Ignite" />
     </div>
     <div class="col-md-4">
       <div class="row">
@@ -15,25 +16,21 @@
                   <div class="body-indentity">
                         <h3><span class="font-bold">Isi form untuk mendapatkan hadiah langsung</span><br><span class="font-small"></span></h3>
                         <div class="form-group">
-                            <!--label for="inputName" class="control-label col-xs-4 text-danger">Nama Lengkap</label-->
                             <div>
                                 <input type="text" class="form-control" id="inputName" name="name" placeholder="Nama Lengkap" value="<?php echo @$this->participant->name;?>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!--label for="inputEmail" class="control-label col-xs-4 text-danger">Email</label-->
                             <div>
                                 <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" value="<?php echo @$this->participant->email;?>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!--label for="inputPhone" class="control-label col-xs-4 text-danger">No. Hp</label-->
                             <div>
                                 <input type="text" class="form-control" id="inputPhone" name="phone_number" placeholder="No. Hp" value="<?php echo @$this->participant->phone_number;?>">
                             </div>
                         </div>
                         <div class="form-group captcha-css">
-                            <!--label for="inputCaptcha" class="control-label col-xs-4 text-danger">Captcha</label-->
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="inputCaptcha" placeholder="Kode Captcha" name="captcha" value="<?php echo @$fields->captcha;?>">
                             </div>

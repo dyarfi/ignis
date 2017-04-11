@@ -32,8 +32,7 @@ class HAuth extends Public_Controller {
 			{
 				log_message('debug', "controllers.HAuth.login: service $provider enabled, trying to authenticate.");
 				$service = $this->hybridauthlib->authenticate($provider);
-                //print_r($service);
-                //exit;
+
                 if ($service->isUserConnected())
 				{
 					log_message('debug', 'controller.HAuth.login: user authenticated.');
@@ -47,9 +46,7 @@ class HAuth extends Public_Controller {
                     if ($user_profile) {
 
                             $participant = $this->Participants->getParticipantByIdentity($user_profile->identifier,$provider);
-                            // print_r($participant);
-                            // print_r($user_profile);
-                            // exit;
+
                             if (!$participant) {
 
                                 $object['identifier_id'] = $user_profile->identifier;
@@ -72,12 +69,10 @@ class HAuth extends Public_Controller {
                                 $participant = $this->Participants->getParticipantByIdentity($user_profile->identifier,$provider);
 
                             } // else {
-
 								// Unset data from session
 							    // $this->participant = $participant;
                                 // $this->session->unset_userdata('participant');
                                 //$this->session->set_userdata('participant', $participant);
-
                             //}
 
                             $this->session->set_userdata('participant', $participant);
@@ -85,9 +80,7 @@ class HAuth extends Public_Controller {
                         // usleep(50000);
                 		// redirect('hauth/done');
                         //if ($this->session->userdata('participant')) {
-
                         	//redirect('hauth/login/'.$provider);
-
                     	//}
 
                     }
@@ -118,8 +111,7 @@ class HAuth extends Public_Controller {
 				case 3 : $error = 'Unknown or disabled provider.'; break;
 				case 4 : $error = 'Missing provider application credentials.'; break;
 				case 5 : log_message('debug', 'controllers.HAuth.login: Authentification failed. The user has canceled the authentication or the provider refused the connection.');
-				         //redirect();
-                         //print_r($e);
+				         //print_r($e);
                          //exit;
 				         if (isset($service))
 				         {
