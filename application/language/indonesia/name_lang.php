@@ -93,6 +93,9 @@ $lang['email_contact_participant'] = 'Yth <b>%s</b>, terima kasih telah mendafta
 									.'Email : <b>%s</b><br>'
 									.'Phone : <b>%s</b><br>'
 									.'Kode Unik : <b>%s</b><br>'
+									.'<br/>'
+									.'Simpan nomor unik peserta Anda untuk ditukarkan dengan souvenir menarik di acara pameran Suzuki Ignis di <b>Kota Kasablanka</b> tanggal <b>17 - 23 April 2017</b> dan <b>IIMS</b> tanggal <b>27 April - 5 Mei 2017</b>.'
+									.'<br/>'
 									.'<br/><br><br>Terima Kasih,<br/><br/>'
 									.'<br><br>Suzuki Indonesia';
 $lang['email_contact_message_admin'] = 'Yth <b>%s</b>, seseorang telah menghubungi anda via website : <b>%s</b> dengan subjek pesan : <b>"%s"</b>, '

@@ -77,7 +77,7 @@
 						</div-->
 					</div>
 					<a class="more" href="<?php echo base_url(ADMIN .'participant/index?active=current')?>">
-						 View more <i class="m-icon-swapright m-icon-white"></i>
+						 View more Participants<i class="m-icon-swapright m-icon-white"></i>
 					</a>
 				</div>
 			</div>
