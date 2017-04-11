@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="<?php echo base_url('favicon.ico');?>">
     <title><?php echo $page_title .' | ' . config_item('title_name') .' - ' . config_item('site_title'); ?></title>
+    <?php if (!empty($this->ga_analytics->value)) { echo $this->ga_analytics->value; } ?>
     <script type="text/javascript">var base_URL = '<?php echo base_url();?>';</script>
     <?php
     /*
