@@ -95,7 +95,7 @@ $this->load_js_jqueryui();
             <?php echo $list_view ?>
         </div>
         <?php echo form_open($ajax_list_url, 'method="post" id="filtering_form" class="filtering_form" autocomplete = "off" data-ajax-list-info-url="' . $ajax_list_info_url . '"'); ?>
-        <div class="sDiv quickSearchBox" id='quickSearchBox'>
+        <div class="sDiv quickSearchBox" id='quickSearchBox' style="display: block;">
             <div class="sDiv2">
                 <?php echo $this->l('list_search'); ?>: <input type="text" class="qsbsearch_fieldox search_text" name="search_text" size="30" id='search_text'>
                 <select name="search_field" id="search_field" class="search_field">
@@ -104,10 +104,10 @@ $this->load_js_jqueryui();
                         <option value="<?php echo $column->field_name ?>"><?php echo $column->display_as ?>&nbsp;&nbsp;</option>
                     <?php } ?>
                 </select>
-                <input type="button" value="<?php echo $this->l('list_search'); ?>" class="crud_search btn" id='crud_search'>
+                <input type="button" value="<?php echo $this->l('list_search'); ?>" class="crud_search" id='crud_search'>
             </div>
             <div class='search-div-clear-button'>
-                <input type="button" value="<?php echo $this->l('list_clear_filtering'); ?>" id='search_clear' class="search_clear btn">
+                <input type="button" value="<?php echo $this->l('list_clear_filtering'); ?>" id='search_clear' class="search_clear">
             </div>
         </div>
         <div class="pDiv">

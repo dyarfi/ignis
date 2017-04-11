@@ -1,4 +1,5 @@
 $(function() {
+    $(".tabs").tabs();
     $('.ptogtitle').click(function() {
         if ($(this).hasClass('vsble'))
         {
@@ -53,6 +54,7 @@ $(function() {
                                     if ($('#save-and-go-back-button').closest('.ui-dialog').length === 0) {
 
                                         parent.$.fancybox.close();
+                                        parent.$('.pReload').click();
                                         parent.$('.flexigrid[data-unique-hash=' + data_unique_hash + ']').find('.ajax_refresh_and_loading').trigger('click');
 
 //                                        window.location = data.success_list_url;

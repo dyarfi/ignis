@@ -583,7 +583,8 @@ div.pGroup {
     text-align: center;
 }
 .crud_page{
-    top:-7px;
+    /*top:-7px;*/
+    top:0px;
     width: 30px;
     height: 17px !important;
     

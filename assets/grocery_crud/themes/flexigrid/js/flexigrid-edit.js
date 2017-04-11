@@ -1,5 +1,15 @@
 $(function() {
-
+    
+    if ($(".tabs").size > 0) {
+	   $(".tabs").tabs();
+    }
+    
+	if ($('.fancybox-video').size() > 0){
+		$('.fancybox-video').fancybox({
+			'iframe' : true
+		});
+	}
+	
     var save_and_close = false;
 
     $('.ptogtitle').click(function() {
@@ -117,4 +127,5 @@ $(function() {
 
 function go_back_list() {
     parent.$.fancybox.close();
+    parent.$('.pReload').click();
 }

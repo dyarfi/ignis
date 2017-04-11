@@ -66,9 +66,10 @@
                 <?php } else { ?>
                     <span class="text-white">Terima Kasih telah menggunakan Account<?php echo ' '.$this->input->get('redirect');?> Anda. Silahkan melanjutkan mengisi form diatas.</span>
                 <?php } ?>
-                <div class="submit-quiz" style="text-align: center; margin: 20px 0 130px auto;">
-                  <button class="btn btn-hero btn-md btn-danger" role="button">SUBMIT</button>
-                  <div class="tnc" style="margin: 10px 0;"><a href="<?php echo base_url('page/terms-and-conditions');?>">Syarat &amp; Ketentuan</a></div>
+                <div class="submit-quiz">
+                  <button class="btn btn-hero btn-lg btn-danger" role="button">SUBMIT</button>
+                  <span class="center-block agreed">* Dengan menekan tombol <b>SUBMIT</b> maka Saya setuju untuk mengirimkan informasi pribadi Saya kepada <a href="http://www.suzuki.co.id/">Suzuki Indonesia</a> dan mitranya untuk menghubungi Saya. Dengan memberikan email dan no handphone, Saya telah menyetujui untuk menerima semua pemberitahuan melalui <a href="http://www.suzuki.co.id/">Suzuki Indonesia</a>.</span>
+                  <div class="tnc"><a class="font-bold" href="<?php echo base_url('page/terms-and-conditions');?>">Syarat &amp; Ketentuan</a></div>
                 </div>
                 <?php echo form_close(); ?>
             </div>

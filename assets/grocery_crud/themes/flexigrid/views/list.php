@@ -1,8 +1,8 @@
 <?php
 $column_width = (int) (80 / count($columns));
 
-if (!empty($list)) { ?>
-    <div class="bDiv" >
+if (!empty($list)) {
+    ?><div class="bDiv" >
         <table cellspacing="0" cellpadding="0" border="0" id="flex1">
             <thead>
                 <tr class='hDiv'>

@@ -66,4 +66,8 @@ legend{color: #fff;    font-size: 1em;}
 .captcha-css .col-md-4
  {padding-left: 0px;}
 .list-inline>li{display: inline;}
-.tnc{margin-top: 20px;}
+.tnc{margin-top: 10px;}
+.tnc a { text-decoration:underline;}
+.tnc a:hover { font-style: italic; color: #990000}
+.submit-quiz { text-align: center; margin: 20px 0 130px auto; }
+.agreed { margin: 20px 0 0 0; text-align: justify; font-size: .90rem; line-height: 1.4em}

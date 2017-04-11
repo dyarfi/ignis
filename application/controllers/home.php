@@ -114,6 +114,13 @@ class Home extends Public_Controller {
 	// Redirect if particpant already participated
 	public function participated () {
 
+		// Check if Participant already completed
+		if (!$this->participant) {
+
+			// Redirect to user landing page
+			redirect(base_url(),'refresh');
+
+		}
 		// Set articles data
 		$data['articles'] =	$this->Articles->getAllArticles();
 

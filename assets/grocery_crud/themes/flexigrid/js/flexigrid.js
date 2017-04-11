@@ -32,21 +32,21 @@ $(function() {
             }
         });
         $('.fancyframe').fancybox({
-            'transitionIn': 'elastic',
-            'transitionOut': 'elastic',
+            'transitionIn': 'fadeIn',
+            'transitionOut': 'fadeOut',
             'speedIn': 200,
             'speedOut': 200,            
             'centerOnScroll':true,
             'overlayShow': true,
-            //'scrolling' : 'auto',
-            'aspectRatio' : true,
-            'width' : '100%',
+			//'scrolling' : 'auto',
+			'aspectRatio' : true,
+			'width'	: '100%',
             'minHeight': '480',
-            'height': '480',
-            'autoCenter' : true,
-            'autoResize' : true,
-            'fitToView' : true,
-            'padding':15,
+			'height': '480',
+			'autoCenter' : true,
+			'autoResize' : true,
+			'fitToView' : true,
+            'padding':10,
             onComplete : function() {
                 //$.fancybox.css({'position':'aboslute'});
                 var top = ($(window).height() / 2) - ($("#fancybox-wrap").outerHeight() / 2);
