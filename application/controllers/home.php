@@ -44,9 +44,10 @@ class Home extends Public_Controller {
 
 	public function index() {
 
-		// Set Participant
+		// Check if Participant already completed
 		if (@$this->participant->completed == 1 && @$this->participant->status == 1) {
 
+			// Redirect to user landing page
 			redirect('participated','refresh');
 
 		}
@@ -118,6 +119,7 @@ class Home extends Public_Controller {
 
 	// Redirect if particpant already participated
 	public function participated () {
+
 		// Set articles data
 		$data['articles'] =	$this->Articles->getAllArticles();
 
