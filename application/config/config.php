@@ -123,7 +123,8 @@ $config['subclass_prefix'] = 'MY_';
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 |
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-() \=';
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-()& \=';
+//$config['permitted_uri_chars'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -244,14 +245,14 @@ $config['encryption_key'] = 'encryption+**&&^^%%$RGGGFR$&&UUJJZXCVZXCV';
 |
 */
 $config['sess_cookie_name']	= 'session_'.md5($config['base_url']);
-$config['sess_expiration']	= 0; // 7200 // default
+$config['sess_expiration']	= 0;
 $config['sess_expire_on_close']	= FALSE;
-$config['sess_encrypt_cookie']	= TRUE;
+$config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= TRUE;
 $config['sess_table_name']	= 'tbl_ci_sessions';
 $config['sess_match_ip']	= FALSE;
-$config['sess_match_useragent']	= FALSE;
-$config['sess_time_to_update']	= 0;
+$config['sess_match_useragent']	= TRUE;
+$config['sess_time_to_update']	= 1200;
 
 /*
 |--------------------------------------------------------------------------
@@ -278,7 +279,7 @@ $config['cookie_secure']	= FALSE;
 | COOKIE data is encountered
 |
 */
-$config['global_xss_filtering'] = FALSE;
+$config['global_xss_filtering'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
