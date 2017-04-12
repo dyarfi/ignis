@@ -143,20 +143,10 @@ class Home extends Public_Controller {
 		$data['main'] = 'participated';
 
 		// Load js execution
-		/*
-		$data['js_inline'] = "
-		$.ajax({
-		    url: 'http://aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid={$this->participant->phone_number}&sp=jak',
-			type:'GET',
-		 	dataType : 'jsonp',
-			async:true,
-            crossDomain:true,
-		    success: function( response ) {
-		        console.log( response ); // server response
-		    }
-		});";
-		*/
 		$data['js_inline'] = "(new Image()).src = 'http://aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid={$this->participant->phone_number}&sp=jak';";
+
+		// Load js execution
+		$data['js_files_ext'] = ["//pixel.mathtag.com/event/js?mt_id=1159527&mt_adid=185618&s1=".base_url()."&s2=".$this->agent->referrer()."&s3=".$this->config->item('language').""];
 
 		// Load site template
 		$this->load->view('template/public/template', $this->load->vars($data));
