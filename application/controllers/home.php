@@ -143,6 +143,7 @@ class Home extends Public_Controller {
 		$data['main'] = 'participated';
 
 		// Load js execution
+		/*
 		$data['js_inline'] = "
 		$.ajax({
 		    url: 'http://aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid={$this->participant->phone_number}&sp=jak',
@@ -154,6 +155,8 @@ class Home extends Public_Controller {
 		        console.log( response ); // server response
 		    }
 		});";
+		*/
+		$data['js_inline'] = "(new Image()).src = 'http://aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid={$this->participant->phone_number}&sp=jak';";
 
 		// Load site template
 		$this->load->view('template/public/template', $this->load->vars($data));
