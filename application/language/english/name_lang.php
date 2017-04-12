@@ -93,10 +93,10 @@ $lang['email_contact_participant'] = 'Dear <b>%s</b>, thank you for registering 
 									.'Email : <b>%s</b><br>'
 									.'Phone : <b>%s</b><br>'
 									.'Unique Code : <b>%s</b><br>'
-									.'<br/>'
-									.'Save your Unique code for the souvenir in Suzuki Ignis Launching at <b>Kota Kasablanka</b> on <b>17 - 23 April 2017</b> and <b>IIMS</b> on <b>27 April - 5 Mei 2017</b>.'
-									.'<br/>'
-									.'<br/><br><br>Thank you,<br/><br/>'
+									.'<br>'
+									.'Save your Unique code for the souvenir in <b>Suzuki Ignis</b> Launching at <b>Kota Kasablanka</b> on <b>17 - 23 April 2017</b> and <b>IIMS</b> on <b>27 April - 5 Mei 2017</b>.'
+									.'<br>'
+									.'<br><br><br>Thank you,<br>'
 									.'<br><br>Suzuki Indonesia';
 
 $lang['email_contact_message_admin'] = 'Dear <b>%s</b>, someone contacting you via website : <b>%s</b> with the subject : <b>"%s"</b>. '

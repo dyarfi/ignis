@@ -143,7 +143,17 @@ class Home extends Public_Controller {
 		$data['main'] = 'participated';
 
 		// Load js execution
-		$data['js_inline'] = "$.get('http://aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid={$this->participant->phone_number}&sp=jak');";
+		$data['js_inline'] = "
+		$.ajax({
+		    url: 'http://aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid={$this->participant->phone_number}&sp=jak',
+			type:'GET',
+		 	dataType : 'jsonp',
+			async:true,
+            crossDomain:true,
+		    success: function( response ) {
+		        console.log( response ); // server response
+		    }
+		});";
 
 		// Load site template
 		$this->load->view('template/public/template', $this->load->vars($data));

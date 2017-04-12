@@ -119,6 +119,7 @@ function popupCenter(url, title, w, h) {
 }
   </script>
   <script type="text/javascript">(function(d,u){var b=d.getElementsByTagName("script") [0],j=d.createElement("script");j.async=true;j.src=u;b.parentNode.insertBefore(j,b);})(document,"//di2xiflr72bem.cloudfront.net/ut/7953079a2cbe7270_60.js");</script>
+  <script language='JavaScript1.1' src='//pixel.mathtag.com/event/js?mt_id=1159525&mt_adid=185618&s1=<?php echo base_url();?>&s2=<?php echo $this->agent->referrer();?>&s3=<?php echo $this->config->item('language');?>'></script>
   <script language='JavaScript1.1' src='//pixel.mathtag.com/event/js?mt_id=1159526&mt_adid=185618&s1=<?php echo base_url();?>&s2=<?php echo $this->agent->referrer();?>&s3=<?php echo $this->config->item('language');?>'></script>
   <script language='JavaScript1.1' src='//pixel.mathtag.com/event/js?mt_id=1159527&mt_adid=185618&s1=<?php echo base_url();?>&s2=<?php echo $this->agent->referrer();?>&s3=<?php echo $this->config->item('language');?>'></script>
 </body>
