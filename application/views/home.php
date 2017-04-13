@@ -1,5 +1,4 @@
 <section class="container-fluid main-content">
-  <!-- start main content -->
   <div class="container">
     <div class="col-md-8 mobil">
       <?php // mobil-ignis-2.jpg  ?>
@@ -81,7 +80,7 @@
     </div>
   </div>
   </div>
-</section> <!-- /container -->
+</section>
 <?php if ($articles) { ?>
       <div class="bar-title">
         <div class="article"><h3>ARTICLES</h3></div>
