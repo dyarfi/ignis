@@ -24,44 +24,21 @@ class Participant extends Admin_Controller {
             $crud->set_table($this->Participants->table)->order_by('join_date','desc');
             // Set CRUD subject
             $crud->set_subject('Participant');
-            // Set table relation
-            // $crud->set_relation('questionnaire','tbl_questionnaire_user_answers','{email} ({name})',array('status' => '1'),'priority ASC');
-            // $crud->set_relation('question_id','tbl_questions','question_text',array('status' => '1'),'priority ASC');
-            // Set table relation
-            //$crud->set_relation('province','tbl_provinces','name');
-            // Set table relation
-            //$crud->set_relation('urbandistrict','tbl_urban_districts','name');
-            // Set table relation
-            //$crud->set_relation('suburban','tbl_sub_urbans','name');
-			// Set column display
-            //$crud->display_as('province','Propinsi');
-            //$crud->display_as('urbandistrict','Kabupaten');
-            //$crud->display_as('suburban','Kecamatan');
-			//$crud->display_as('file_name','ID Image File');
             // Set column
-            /* $crud->columns('id_number','name','photo_url','gender','age','email','phone_number','address','province','urbandistrict','suburban','zipcode','oshi_favorite','fb_pic_url','file_name','join_date'); */
+            //$crud->columns('name','email','phone_number','identity','profile_url','verify','join_date');
             $crud->columns('name','email','phone_number','verify','join_date');
-			// The fields that user will see on add and edit form
-			//$crud->fields('subject','name','menu_id','synopsis','text','publish_date','unpublish_date','status','added','modified');
-            // Set column display
+			// Set column display
             $crud->display_as('phone_number','Phone');
             $crud->display_as('verify','Unique Code');
-            //$crud->display_as('menu_id','Menu');
-			// Changes the default field type
-			//$crud->field_type('added', 'hidden');
-			//$crud->field_type('modified', 'hidden');
-			// This callback escapes the default auto field output of the field name at the add form
-			//$crud->callback_add_field('added',array($this,'_callback_time_added'));
-			// This callback escapes the default auto field output of the field name at the edit form
-			$crud->callback_edit_field('modified',array($this,'_callback_time_modified'));
-			// This callback escapes the default auto field output of the field name at the add/edit form.
-			// $crud->callback_field('status',array($this,'_callback_dropdown'));
+            $crud->callback_edit_field('modified',array($this,'_callback_time_modified'));
 			// This callback escapes the default auto column output of the field name at the add form
+            $crud->callback_column('identity',array($this,'_callback_identity'));
 			$crud->callback_column('file_name',array($this,'_callback_filename'));
 			$crud->callback_column('added',array($this,'_callback_time'));
 			$crud->callback_column('modified',array($this,'_callback_time'));
 			$crud->callback_column('fb_pic_url',array($this,'callback_pic'));
             $crud->callback_column('photo_url',array($this,'_callback_pic'));
+            $crud->callback_column('profile_url',array($this,'_callback_profile_url'));
 			$crud->unset_columns('completed');
 			// Sets the required fields of add and edit fields
 			// $crud->required_fields('subject','name','text','status');
@@ -73,6 +50,7 @@ class Participant extends Admin_Controller {
 			{
 				//Do your awesome coding here.
 				$crud->callback_column('file_name',array($this,'_callback_filename_url'));
+				$crud->callback_column('phone_number',array($this,'_callback_phone_number'));
 			}
 
 			//$crud->unset_add();
@@ -106,6 +84,21 @@ class Participant extends Admin_Controller {
 	public function _callback_filename($value, $row) {
 		$row->file_name = strip_tags($row->file_name);
         return $row->file_name ? '<div class="text-center"><a href="'.base_url('uploads/users/'.$row->file_name).'" class="image-thumbnail"><img height="110px" src="'.base_url('uploads/users/'.$row->file_name).'"/></a></div>' : '-';
+    }
+
+    public function _callback_identity($value, $row) {
+        $row->identity = $row->identity ? $row->identity : 'Website';
+        return $row->identity;
+    }
+
+    public function _callback_phone_number($value, $row) {
+        $row->phone_number = $row->phone_number ? '\''.$row->phone_number : $row->phone_number;
+        return $row->phone_number;
+    }
+
+    public function _callback_profile_url($value, $row) {
+        $row->profile_url = $row->profile_url ? $row->profile_url : '-';
+        return $row->profile_url;
     }
 
 	public function _callback_filename_url($value, $row) {
