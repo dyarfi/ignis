@@ -223,7 +223,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = 'encryption+**&&^^%%$RGGGFR$&&UUJJZXCVZXCV';
+$config['encryption_key'] = 'encryption+**&&^^%%$RGGGFR$&&';
 
 
 /*
@@ -244,7 +244,7 @@ $config['encryption_key'] = 'encryption+**&&^^%%$RGGGFR$&&UUJJZXCVZXCV';
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
-$config['sess_cookie_name']	= 'session_'.md5($config['base_url']);
+$config['sess_cookie_name']	= 'session_'.md5('si');
 $config['sess_expiration']	= 0;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;
