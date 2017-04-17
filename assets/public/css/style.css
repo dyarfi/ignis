@@ -16,8 +16,9 @@
 html, body{font-size: 100%;}
 body{
     font-family: 'kelson_sanslight';
-    background-color: #000;
-    color: #fff;height:100%;
+    background: #fff url('../img/background.jpg') center no-repeat;
+    color: #000;
+    height:100%;
 }
 
 .form-control{
@@ -47,8 +48,8 @@ footer{
     letter-spacing: 0.1em;
     width: 100%;
 }
-a{color: #fff}
-a:focus, a:hover{color: #fff;}
+a{color: #000}
+a:focus, a:hover{color: #000;}
 .form-group input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #000;
 }
@@ -61,7 +62,7 @@ a:focus, a:hover{color: #fff;}
 .form-group input:-moz-placeholder { /* Firefox 18- */
   color: #000;
 }
-legend{color: #fff;    font-size: 1em;}
+legend{color: #000;    font-size: 1em;}
 .captcha-css .col-md-8,
 .captcha-css .col-md-4
  {padding-left: 0px;}

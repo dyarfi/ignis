@@ -2,7 +2,7 @@
   <div class="container">
     <div class="col-md-8 mobil">
       <?php // mobil-ignis-2.jpg  ?>
-      <img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/ignis-lamp.gif');?>" alt="Suzuki Ignis - Gear to Ignite" />
+      <img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/mobil-ignis.png');?>" alt="Suzuki Ignis - Gear to Ignite" />
     </div>
     <div class="col-md-4">
       <div class="row">
