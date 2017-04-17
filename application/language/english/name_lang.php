@@ -94,7 +94,7 @@ $lang['email_contact_participant'] = 'Dear <b>%s</b>, thank you for registering 
 									.'Phone : <b>%s</b><br>'
 									.'Unique Code : <b>%s</b><br>'
 									.'<br>'
-									.'Save your Unique code for the souvenir in <b>Suzuki Ignis</b> Launching at <b>Kota Kasablanka</b> on <b>17 - 23 April 2017</b> and <b>IIMS</b> on <b>27 April - 5 Mei 2017</b>.'
+									.'Save your Unique code for the souvenir in <b>Suzuki Ignis</b> Launching at <b>Kota Kasablanka</b> on <b>19 - 23 April 2017</b> and <b>IIMS</b> on <b>27 April - 7 Mei 2017</b>.'
 									.'<br>'
 									.'<br><br><br>Thank you,<br>'
 									.'<br><br>Suzuki Indonesia';
