@@ -16,7 +16,7 @@
 html, body{font-size: 100%;}
 body{
     font-family: 'kelson_sanslight';
-    background: #000 url('../img/background_.jpg') top center no-repeat;
+    background: #000 url('../img/background.jpg') top center no-repeat;
     color: #000;
     height:100%;
 }
