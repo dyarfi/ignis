@@ -2,7 +2,7 @@
   <div class="container">
     <div class="col-md-8 mobil">
       <?php // mobil-ignis-2.jpg  ?>
-      <img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/mobil-ignis.png');?>" alt="Suzuki Ignis - Gear to Ignite" />
+      <!--img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/mobil-ignis.png');?>" alt="Suzuki Ignis - Gear to Ignite" /-->
     </div>
     <div class="col-md-4">
       <div class="row">
@@ -13,7 +13,7 @@
                 <?php echo form_open(base_url('account/update_account'),['enctype'=>'multipart/form-data','role'=>'form','name'=>'form_account','id'=>'form_account','class'=>'form-horizontal']); ?>
                 <div class="indentity-form">
                   <div class="body-indentity">
-                        <h3><span class="font-bold">Isi form untuk mendapatkan souvenir menarik</span><br><span class="font-small"></span></h3>
+                        <h3><span class="font-bold ts">Isi form untuk mendapatkan souvenir menarik</span><br><span class="font-small"></span></h3>
                         <div class="form-group">
                             <div>
                                 <input type="text" class="form-control" id="inputName" name="name" placeholder="Nama Lengkap" value="<?php echo @$this->participant->name;?>">
@@ -41,7 +41,7 @@
                 </div>
                 <?php if (!$this->participant) { ?>
                 <div class="boxed-grey">
-                    <fieldset><legend class="text-white">Atau login dengan akun sosial anda untuk melanjutkan</legend>
+                    <fieldset><legend class="text-white ts">Atau login dengan akun sosial anda untuk melanjutkan</legend>
                         <ul class="list-inline">
                             <li>
                                 <a href="javascript:void(0);" class="btn btn-sm btn-primary facebook" id="facebook" onclick="popupCenter('<?php echo base_url('hauth/login/Facebook');?>', 'Facebook',480,520);">
@@ -59,15 +59,15 @@
                                 </a>
                             </li>
                         </ul>
-                        <span class="text-white">* Akan dikembalikan ke halaman daftar setelah login</span>
+                        <span class="text-white ts">* Akan dikembalikan ke halaman daftar setelah login</span>
                     </fieldset>
                 </div>
                 <?php } else { ?>
-                    <span class="text-white">Terima Kasih telah menggunakan Account<?php echo ' '.$this->input->get('redirect');?> Anda. Silahkan melanjutkan mengisi form diatas.</span>
+                    <span class="text-white ts">Terima Kasih telah menggunakan Account<?php echo ' '.$this->input->get('redirect');?> Anda. Silahkan melanjutkan mengisi form diatas.</span>
                 <?php } ?>
                 <div class="submit-quiz">
                   <button class="btn btn-hero btn-lg btn-danger" role="button">SUBMIT</button>
-                  <span class="center-block agreed">
+                  <span class="center-block agreed ts">
                       Dengan menekan tombol <b>SUBMIT</b> berarti <b>ANDA</b> setuju untuk tunduk kepada <a href="<?php echo base_url('page/terms-and-conditions');?>" class="font-bold">Syarat &amp; Ketentuan</a> yang berlaku.
                   </span>
                   <div class="tnc">

@@ -16,11 +16,13 @@
 html, body{font-size: 100%;}
 body{
     font-family: 'kelson_sanslight';
-    background: #fff url('../img/background.jpg') center no-repeat;
+    background: #000 url('../img/background_.jpg') top center no-repeat;
     color: #000;
     height:100%;
 }
-
+.body-blank {
+    background: #000 url('../img/background-fade.jpg') top center no-repeat;
+}
 .form-control{
     border-radius: 0;
     background-color: rgba(255, 255, 255, 0.7);
@@ -74,3 +76,4 @@ legend{color: #000;    font-size: 1em;}
 .agreed { margin: 20px 0 0 0; text-align: justify; font-size: .90rem; line-height: 1.4em}
 .agreed a { text-decoration:underline; }
 .agreed a:hover { font-style: italic; color: #990000 }
+.ts { text-shadow: 1px 1px 0px rgba(255, 255, 255, 1); }
