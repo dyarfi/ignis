@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Articles_Gallery extends Admin_Controller {
+class Article_Gallery extends Admin_Controller {
 
     public function __construct() {
 
@@ -13,43 +13,43 @@ class Articles_Gallery extends Admin_Controller {
             $this->load->library('image_CRUD');
 
     }
-	
+
     public function index() {
-        
-        try {            
-            
+
+        try {
+
             $image_crud = new image_CRUD();
-		
+
             $image_crud->set_primary_key_field('id');
             $image_crud->set_url_field('file_name');
             $image_crud->set_table('tbl_article_images');
             $image_crud->set_relation_field('field_id')
             ->set_ordering_field('priority')
             ->set_image_path('uploads/articles');
-            
+
             $this->load($image_crud);
-        
+
         } catch (Exception $e) {
             show_error($e->getMessage() . ' --- ' . $e->getTraceAsString());
         }
-        
+
     }
-    
+
     private function load($crud) {
-        
+
         $output = $crud->render();
 
-        // Set Title 
+        // Set Title
         $output->page_title = 'Articles Gallery Listings';
 
         // Set Main Template
         $output->main       = 'upload_index';
 
-        // Set Output 
+        // Set Output
         $data->output       = $output;
 
         // Set Primary Template
         $this->load->view('template/admin/popup_uploader', $output);
-            
+
     }
 }
