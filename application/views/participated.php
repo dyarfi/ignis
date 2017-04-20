@@ -2,10 +2,10 @@
   <!-- start main content -->
   <div class="container">
     <div class="col-md-8 mobil">
-      <img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/ignis-lamp.gif');?>" alt="suzuki" />
+      <img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/mobil-ignis.png');?>" alt="suzuki" />
     </div>
     <div class="col-md-4">
-      <div class="row">
+      <div class="row ts">
         <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
         <div id="result" class="col-md-12"></div>
         <div class="container-fluid quiz">
