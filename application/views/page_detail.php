@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div class="container">
   <div class="back-to-article">
-    <div class="article ts"><h4><a href="<?php echo base_url();?>">BACK TO HOME</a></h4></div>
+    <div class="article ts"><h4>&laquo; <a href="<?php echo base_url();?>">BACK TO HOME</a></h4></div>
     <div class="article-bar-left"></div>
   </div>
   <div class="article-page terms-page ts">

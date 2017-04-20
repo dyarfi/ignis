@@ -38,14 +38,19 @@ class Article extends Admin_Controller {
             // Set CRUD subject
             $crud->set_subject('Articles');
             // Set column
-            $crud->columns('subject','synopsis','media','text','gallery','status','added','modified');
+            $crud->columns('subject','text',/*'gallery',*/'status','publish_date','modified');
 			// The fields that user will see on add and edit form
-			$crud->fields('subject','url','synopsis','text','media','publish_date','unpublish_date','status','added','modified');
+			$crud->fields('subject','url','text','attribute','media','publish_date','status','modified');
 
             // Changes the default field type
 			$crud->field_type('url', 'hidden');
 			$crud->field_type('added', 'hidden');
 			$crud->field_type('modified', 'hidden');
+
+            // Column or Field display as alias
+            $crud->display_as('attribute','Video');
+            // Unset Text Editor
+            $crud->unset_texteditor('attribute');
 
 			// This callback escapes the default auto field output of the field name at the add form
 			$crud->callback_add_field('added',array($this,'_callback_time_added'));
@@ -65,7 +70,7 @@ class Article extends Admin_Controller {
             $crud->callback_column('gallery',array($this,'_callback_gallery'));
 
 			// Sets the required fields of add and edit fields
-			$crud->required_fields('subject','media','text','status');
+			$crud->required_fields('subject','text','status');
 
 			// Set upload field
             $crud->set_field_upload('media','uploads/articles');
@@ -113,9 +118,12 @@ class Article extends Admin_Controller {
 
         // Checking the id and url
         if ($existed_db->id != $primary_key && $existed_db->url == $url) {
+
             $url = $url.time();
+
         } else {
-            $url = $value['url'];
+
+            $url = $url;
         }
 
         // Set default post
@@ -145,7 +153,7 @@ class Article extends Admin_Controller {
 
     public function _callback_gallery ($value,$row) {
         if ($row->id) {
-            return '<a href="'.base_url(ADMIN).'/article_gallery/index/'.$row->id.'" class="fancyframe iframe"><span class="btn btn-default btn-mini glyphicon glyphicon-camera"></span></a>'; 
+            return '<a href="'.base_url(ADMIN).'/article_gallery/index/'.$row->id.'" class="fancyframe iframe"><span class="btn btn-default btn-mini glyphicon glyphicon-camera"></span></a>';
         } else {
             return '-';
         }

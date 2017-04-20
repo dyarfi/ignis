@@ -79,40 +79,25 @@
           </div>
         </div>
     </div>
-    <div class="col-md-6 col-sm-12">
-        <h2 class="ts strong">Suzuki Ignis | 360 Video</h2>
-        <div class="iframe_youtube"><iframe src="https://www.youtube.com/embed/5rXHSSfaAeg?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" allowfullscreen></iframe></div>
-    </div>
-  	<div class="col-md-6 col-sm-12">
-        <h2 class="ts strong">Gofar Hilman on Suzuki Ignis</h2>
-        <div class="iframe_youtube"><iframe src="https://www.youtube.com/embed/sjuYvAkADTA?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" allowfullscreen></iframe></div>
-    </div>
-  </div>
-</section>
-<?php if ($articles) { ?>
-      <div class="bar-title">
-        <div class="article"><h3>ARTICLES</h3></div>
-        <div class="article-bar-left"></div>
-        <div class="article-bar-right"></div>
-        <div class="article article-right"></div>
-      </div>
-      <div class="article-item">
+    <?php if ($articles) { ?>
         <?php foreach ($articles as $article) { ?>
-            <div class="col-xs-12 col-sm-4 col-md-4">
-              <div class="thumbnail">
-                <div class="text-caption">
-                  <p><?php echo date('D, d-m-Y',$article->added);?></p>
-                  <h3><a href="<?php echo base_url('read/article/'.$article->url);?>"><?php echo $article->subject;?></a></h3>
-                </div>
-                <div class="caption"></div>
-                <?php if ($article->media) { ?>
+            <div class="col-md-6 col-sm-12">
+                <h2 class="ts strong"><a href="<?php echo base_url('read/article/'.$article->url);?>"><?php echo $article->subject;?></a></h2>
+                <?php if ($article->media && !$article->attribute) { ?>
                     <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
-                <?php } else { ?>
-                    <img class="img-responsive" src="<?php echo base_url('assets/public/img');?>/article-01.jpg" />
-                <?php } ?>
-              </div>
+                    <?php
+                    } else if ($article->attribute && !$article->media) {
+                        echo $article->attribute;
+                    } else if ($article->attribute && $article->media) {
+                        echo '<img class="img-responsive" src="'.base_url('uploads/articles/'.$article->media).'" />';
+                        echo $article->attribute;
+                    } else {
+                        echo '<span>'.date('d, m Y',strtotime($article->publish_date)).'</span>';
+                        echo strip_tags($article->text);
+                    }
+                ?>
             </div>
         <?php } ?>
-      </div>
-<?php } else { ?>
-<?php } ?>
+    <?php } ?>
+  </div>
+</section>

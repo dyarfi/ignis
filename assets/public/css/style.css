@@ -21,7 +21,7 @@ body{
     height:100%;
 }
 .body-blank {
-    background: #000 url('../img/background-fade.jpg') top center no-repeat;
+    background: #000 url('../img/background-fade.jpg') top center fixed;
 }
 .form-control{
     border-radius: 0;
@@ -72,7 +72,7 @@ legend{color: #000;    font-size: 1em;}
 .tnc{margin-top: 10px;}
 .tnc a { text-decoration:underline;}
 .tnc a:hover { font-style: italic; color: #990000}
-.submit-quiz { text-align: center; margin: 20px 0 30px auto; }
+.submit-quiz { text-align: center; margin: 20px 0 10px auto; }
 .iframe_youtube { position:relative;height:0;padding-bottom:56.21%;}
 .agreed { margin: 20px 0 0 0; text-align: justify; font-size: .90rem; line-height: 1.4em}
 .agreed a { text-decoration:underline; }

@@ -1,23 +1,24 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-    <div class="container">   
+    <div class="container mb100">
       <div class="article-page-title">
-        <h2>ARTICLES</h2>
+        <div class="article ts"><h4>&laquo; <a href="<?php echo base_url();?>">BACK TO HOME</a></h4></div>
       </div>
-      <div class="article-item">
+      <h2 class="ts">ARTICLES</h2>
+      <div class="row mb100">
         <?php if ($articles) { ?>
       	<?php foreach ($articles as $article) { ?>
-	      	<div class="col-xs-12 col-sm-4 col-md-4">            
+	      	<div class="col-xs-12 col-sm-4 col-md-4">
+              <h3 class="ts"><a href="<?php echo base_url('read/article/'.$article->url);?>"><?php echo $article->subject;?></a></h3>
+              <span class="ts"><?php echo date('D, d m Y',strtotime($article->publish_date));?></span>
 	          <div class="thumbnail">
-	            <div class="text-caption">
-	              <p><?php echo date('d, m Y',$article->added);?></p>
-	              <h3><a href="<?php echo base_url('read/article/'.$article->url);?>"><?php echo $article->subject;?></a></h3>
-	            </div>
-	            <div class="caption"></div>
-	            <?php if ($article->media) { ?>	            
-	            	<img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
-	            <?php } else { ?>
-	            	<img class="img-responsive" src="<?php echo base_url('assets/public/img/article-01.jpg');?>" />
-	            <?php } ?>
+	            <?php if ($article->media && !$article->attribute) { ?>
+                    <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                <?php } else if ($article->attribute && !$article->media) {
+                    echo $article->attribute;
+                } else {
+                    echo '<img class="img-responsive" src="'.base_url('uploads/articles/'.$article->media).'" />';
+                    echo $article->attribute;
+                } ?>
 	          </div>
 	        </div>
       	<?php } ?>

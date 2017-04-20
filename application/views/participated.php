@@ -5,49 +5,43 @@
       <img class="img-responsive produk-ignis" src="<?php echo base_url('assets/public/img/mobil-ignis.png');?>" alt="suzuki" />
     </div>
     <div class="col-md-4">
-      <div class="row ts">
+      <div class="row">
         <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
         <div id="result" class="col-md-12"></div>
         <div class="container-fluid quiz">
             <div>
-                <div class="main-page text-white" style="margin:100px auto 340px auto">
-                  <h1><?php echo $this->participant->name; ?></h1>
-                  <h3>Kode Unik Anda : <b class="text-white"><?php echo $this->participant->verify; ?></b></h3>
+                <div class="main-page text-white" style="margin:100px auto 10px auto">
+                  <h1 class="ts"><?php echo $this->participant->name; ?></h1>
+                  <h3 class="ts">Kode Unik Anda : <b class="text-white font-bold"><?php echo $this->participant->verify; ?></b></h3>
                   <a href="<?php echo base_url('account/logout');?>" class="btn btn-danger btn-md">LOGOUT</a>
-                  <br/><br/>
-                  Simpan nomor unik peserta Anda untuk ditukarkan dengan souvenir menarik di acara pameran Suzuki Ignis di <b>Kota Kasablanka</b> tanggal <b>19 - 23 April 2017</b> dan <b>IIMS</b> tanggal <b>27 April - 7 Mei 2017</b>
-                  <br/>
+                  <p class="ts">
+                  Simpan nomor unik peserta Anda untuk ditukarkan dengan souvenir menarik di acara pameran Suzuki Ignis di <b>Kota Kasablanka</b> tanggal <b>19 - 23 April 2017</b> dan <b>IIMS</b> tanggal <b>27 April - 7 Mei 2017.</b>
+                  </p>
+                  <a class="ts font-bold" href="<?php echo base_url('page/terms-and-conditions');?>" class="font-bold">Syarat &amp; Ketentuan</a>
                 </div>
             </div>
         </div>
     </div>
   </div>
+  <?php if ($articles) { ?>
+      <?php foreach ($articles as $article) { ?>
+          <div class="col-md-6 col-sm-12">
+              <h2 class="ts strong"><a href="<?php echo base_url('read/article/'.$article->url);?>"><?php echo $article->subject;?></a></h2>
+              <?php if ($article->media && !$article->attribute) { ?>
+                  <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                  <?php
+                  } else if ($article->attribute && !$article->media) {
+                      echo $article->attribute;
+                  } else if ($article->attribute && $article->media) {
+                      echo '<img class="img-responsive" src="'.base_url('uploads/articles/'.$article->media).'" />';
+                      echo $article->attribute;
+                  } else {
+                      echo '<span>'.date('d, m Y',strtotime($article->publish_date)).'</span>';
+                      echo strip_tags($article->text);
+                  }
+              ?>
+          </div>
+      <?php } ?>
+  <?php } ?>
   </div>
 </section> <!-- /container -->
-<?php if ($articles) { ?>
-      <div class="bar-title">
-        <div class="article"><h3>ARTICLES</h3></div>
-        <div class="article-bar-left"></div>
-        <div class="article-bar-right"></div>
-        <div class="article article-right"></div>
-      </div>
-      <div class="article-item">
-        <?php foreach ($articles as $article) { ?>
-            <div class="col-xs-12 col-sm-4 col-md-4">
-              <div class="thumbnail">
-                <div class="text-caption">
-                  <p><?php echo date('D, d-m-Y',$article->added);?></p>
-                  <h3><a href="<?php echo base_url('read/article/'.$article->url);?>"><?php echo $article->subject;?></a></h3>
-                </div>
-                <div class="caption"></div>
-                <?php if ($article->media) { ?>
-                    <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
-                <?php } else { ?>
-                    <img class="img-responsive" src="<?php echo base_url('assets/public/img');?>/article-01.jpg" />
-                <?php } ?>
-              </div>
-            </div>
-        <?php } ?>
-      </div>
-<?php } else { ?>
-<?php } ?>
