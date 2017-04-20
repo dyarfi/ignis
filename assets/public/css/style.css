@@ -16,7 +16,7 @@
 html, body{font-size: 100%;}
 body{
     font-family: 'kelson_sanslight';
-    background: #000 url('../img/background.jpg') top center repeat;
+    background: #000 url('../img/background.jpg') top center fixed;
     color: #000;
     height:100%;
 }
@@ -77,7 +77,7 @@ legend{color: #000;    font-size: 1em;}
 .agreed { margin: 20px 0 0 0; text-align: justify; font-size: .90rem; line-height: 1.4em}
 .agreed a { text-decoration:underline; }
 .agreed a:hover { font-style: italic; color: #990000 }
-.ts { text-shadow: 1px 1px 0px rgba(255, 255, 255, 1); }
+.ts { text-shadow: 1px 1px 0px rgba(255, 255, 255, 1); margin-top: 30px; }
 .mb20 { margin-bottom: 20px;}
 .mb40 { margin-bottom: 40px;}
 .mb60 { margin-bottom: 60px;}

@@ -79,11 +79,11 @@
           </div>
         </div>
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="col-md-6 col-sm-12">
         <h2 class="ts strong">Suzuki Ignis | 360 Video</h2>
         <div class="iframe_youtube"><iframe src="https://www.youtube.com/embed/5rXHSSfaAeg?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" allowfullscreen></iframe></div>
     </div>
-  	<div class="col-lg-12 col-md-12 col-sm-12 mb100">
+  	<div class="col-md-6 col-sm-12">
         <h2 class="ts strong">Gofar Hilman on Suzuki Ignis</h2>
         <div class="iframe_youtube"><iframe src="https://www.youtube.com/embed/sjuYvAkADTA?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="641" height="360" frameborder="0" allowfullscreen></iframe></div>
     </div>
