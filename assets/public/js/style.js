@@ -1,4 +1,5 @@
-$( document ).ready(function() {
+$(window).on("resize", function() { if($('#navbar').hasClass('in')) { $('#navbar').removeClass('in');} });
+$(document).ready(function() {
     $("[rel='tooltip']").tooltip();
     $('.thumbnail').hover(
         function(){

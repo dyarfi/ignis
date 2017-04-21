@@ -31,13 +31,27 @@ body{
 .mobil {
     /*padding: 5% 6% 0 6%;*/
 }
-.btn{border-radius: 0;}
-
-header::after{clear: both;}
-/*.produk-ignis{margin-left: 30px;}*/
-.form-horizontal .form-group{
-    margin: 0 0 10px;
+.navbar { border: 0px}
+.btn { border-radius: 0; }
+.dropdown-toggle, .navbar-toggle, .navbar-toggle.collapsed, .navbar-toggle.collapse { border:1px solid #FFFFFF; border-radius: 0}
+.ignis-nav-li {
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid #ffffff;
+    margin-right: 40px;
 }
+.ignis-nav-dropdown li { margin-left: 25px;}
+.ignis-nav-dropdown a { text-transform: uppercase; font-weight: bold; text-shadow: 1px 1px 0px rgba(255, 255, 255, 1); background: rgba(255,255,255,0.5)}
+.ignis-nav-dropdown a.ignis-nav { padding-left: 20px; padding-right: 20px;}
+.dropdown-menu { border-radius: 0; text-transform: uppercase }
+.navbar-nav a:focus, .ignis-nav-li a:focus,
+.navbar-nav a:hover, .ignis-nav-li a:hover { color: #ffffff; background: rgba(255,255,255,0.2) !important; }
+.ignis-nav-li a { color: #ffffff;padding-left:40px !important;padding-right:40px !important; }
+.ignis-nav-dropdown a.ignis-nav:hover { color: #000000; background: rgba(255,255,255,0.8) }
+.ignis-nav-dropdown a:hover { background: rgba(255,255,255,0.8) !important }
+.ignis-navbar { margin-right: 25px }
+header::after{clear: both;}
+.form-horizontal .form-group { margin: 0 0 10px; }
 .body-text-article { margin: 0 0 100px 0;}
 h1, .h1{font-size: 4em; line-height: 0.9em; letter-spacing: 0.05em;}
 .font-bold{font-family: 'kelson_sans_bglight'; font-weight: bold;}
@@ -83,3 +97,8 @@ legend{color: #000;    font-size: 1em;}
 .mb60 { margin-bottom: 60px;}
 .mb80 { margin-bottom: 80px;}
 .mb100 { margin-bottom: 100px;}
+.mt20 { margin-top: 20px;}
+.mt40 { margin-top: 40px;}
+.mt60 { margin-top: 60px;}
+.mt80 { margin-top: 80px;}
+.mt100 { margin-top: 100px;}
