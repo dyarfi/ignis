@@ -15,9 +15,10 @@
                     <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
                 <?php } else if ($article->attribute && !$article->media) {
                     echo $article->attribute;
-                } else {
-                    echo '<img class="img-responsive" src="'.base_url('uploads/articles/'.$article->media).'" />';
+                } else if ($article->attribute && $article->media) {
                     echo $article->attribute;
+                } else {
+                    echo '<img class="img-responsive" src="'.base_url('assets/static/img/default.jpg').'" />';
                 } ?>
 	          </div>
 	        </div>

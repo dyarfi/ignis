@@ -89,11 +89,9 @@
                     } else if ($article->attribute && !$article->media) {
                         echo $article->attribute;
                     } else if ($article->attribute && $article->media) {
-                        echo '<img class="img-responsive" src="'.base_url('uploads/articles/'.$article->media).'" />';
                         echo $article->attribute;
                     } else {
-                        echo '<span>'.date('d, m Y',strtotime($article->publish_date)).'</span>';
-                        echo strip_tags($article->text);
+                        echo '<img class="img-responsive" src="'.base_url('assets/static/img/default.jpg').'" />';
                     }
                 ?>
             </div>
