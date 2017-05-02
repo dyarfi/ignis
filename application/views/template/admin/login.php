@@ -8,6 +8,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
+<meta name="robots" content="noindex, nofollow">
 <title><?=$this->config->item('developer_name');?> | Login</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -58,7 +59,7 @@
     <div class="copyright">
 	<?php $this->load->view('template/admin/footer'); ?>
     </div>
-</div>	
+</div>
 <!-- END COPYRIGHT -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
@@ -82,7 +83,7 @@
 <script src="<?=base_url()?>assets/admin/scripts/core/app.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script type="text/javascript">
-jQuery(document).ready(function() {     
+jQuery(document).ready(function() {
 	App.init();
 <?php echo ($js_inline) ? "\t".$js_inline."\n" : "";?>
 });

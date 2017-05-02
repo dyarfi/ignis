@@ -14,6 +14,9 @@ class Participant extends Admin_Controller {
             // Load Grocery CRUD
             $this->load->library('grocery_CRUD');
 
+            $this->config->set_item('global_xss_filtering', FALSE);
+
+
     }
 
     public function index() {

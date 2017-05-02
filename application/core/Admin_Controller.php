@@ -36,6 +36,8 @@ class Admin_Controller extends CI_Controller {
 
 		// Set default language to English
 		$this->config->set_item('language','english');
+		$this->config->set_item('global_xss_filtering', FALSE);
+		$this->config->set_item('csrf_protection', FALSE);
 
 		// Session destroy
 		//$this->session->sess_destroy();
