@@ -40,7 +40,7 @@ class Article extends Admin_Controller {
             // Set column
             $crud->columns('subject','text',/*'gallery',*/'status','publish_date','modified');
 			// The fields that user will see on add and edit form
-			$crud->fields('subject','url','text','attribute','media','publish_date','status','modified');
+			$crud->fields('subject','url','ext_url','text','attribute','media','publish_date','status','modified');
 
             // Changes the default field type
 			$crud->field_type('url', 'hidden');
@@ -56,6 +56,10 @@ class Article extends Admin_Controller {
 			$crud->callback_add_field('added',array($this,'_callback_time_added'));
 			// This callback escapes the default auto field output of the field name at the edit form
 			$crud->callback_edit_field('modified',array($this,'_callback_time_modified'));
+            // This callback escapes the default auto field output of the field name at the add form
+            $crud->callback_add_field('ext_url',array($this,'_callback_add_ext_url'));
+            // This callback escapes the default auto field output of the field name at the edit form
+            $crud->callback_edit_field('ext_url',array($this,'_callback_edit_ext_url'));
 			// This callback escapes the default auto field output of the field name at the add/edit form.
 			// $crud->callback_field('status',array($this,'_callback_dropdown'));
 			// This callback escapes the default auto column output of the field name at the add form
@@ -63,8 +67,8 @@ class Article extends Admin_Controller {
 			$crud->callback_column('modified',array($this,'_callback_time'));
 
 			// Set callback before database set
-            $crud->callback_before_insert(array($this,'_callback_url_insert'));
-            $crud->callback_before_update(array($this,'_callback_url_update'));
+            $crud->callback_before_insert(array($this,'_callback_url'));
+            $crud->callback_before_update(array($this,'_callback_url'));
 
             // Callback Column
             $crud->callback_column('gallery',array($this,'_callback_gallery'));
@@ -146,6 +150,33 @@ class Article extends Admin_Controller {
 		return '<input type="hidden" maxlength="50" value="'.$time.'" name="modified">';
     }
 
+    public function _callback_add_ext_url ($value, $row) {
+    	return 'No <input type="radio" value="0" name="ext_url" checked>&nbsp;&nbsp;&nbsp;&nbsp;Yes <input type="radio" value="1" name="ext_url"> ';
+    }
+
+    public function _callback_edit_ext_url ($value, $row) {
+
+        $input = 'No <input type="radio" value="0" name="ext_url" '.(($value == 0) ? 'checked':'').'>&nbsp;&nbsp;&nbsp;&nbsp;Yes <input type="radio" value="1" name="ext_url" '.(($value==1) ? 'checked' :'').'> ';
+
+    	return $input;
+    }
+
+    public function _callback_url($value, $primary_key) {
+
+        // Check if ext_url is true
+        if ($value['ext_url'] != 1) {
+
+           $url = url_title($value['subject'],'-',true);
+
+            // Set url_title() function to set readable text
+            $value['url'] = $url;
+
+        }
+
+        // Return update database
+        return $value;
+    }
+
     public function _callback_total_image($value, $row) {
         $total = $this->user_model->total_image_submitted($row->participant_id);
         return $total;
@@ -170,6 +201,25 @@ class Article extends Admin_Controller {
             // Set Primary Template
             $this->load->view('template/admin/template.php', $output);
         } else {
+            // Set JS Inline
+        	$output->js_inline 	= "
+            var input = $('input[name=\"ext_url\"]');
+            if ($('input[name=\"ext_url\"]:checked').val() == 0) {
+                $('#field-url').attr('type','hidden');
+            } else {
+                var sel = $('#field-url');
+                sel.attr('type','text').detach().insertAfter(input.last());
+            }
+            input.change(function() {
+                var obj = $(this);
+                if (obj.val() == 1) {
+                    var sel = obj.parents('.form-div').find('#field-url');
+                    sel.attr('type','text').detach().insertAfter(obj.last());
+                } else {
+                    obj.parents('.form-div').find('#field-url').attr('type','hidden');
+                }
+            });
+            ";
             $this->load->view('template/admin/popup.php', $output);
         }
     }

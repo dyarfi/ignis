@@ -80,18 +80,19 @@
         </div>
     </div>
     <?php if ($articles) { ?>
-        <?php foreach ($articles as $article) { ?>
+        <?php foreach ($articles as $article) {
+            $url_type = ($article->ext_url == 1) ? $article->url : base_url('read/article/'.$article->url);?>
             <div class="col-md-6 col-sm-12">
-                <h2 class="ts strong"><a href="<?php echo base_url('read/article/'.$article->url);?>"><?php echo $article->subject;?></a></h2>
+                <h2 class="ts strong"><a href="<?php echo $url_type;?>"><?php echo $article->subject;?></a></h2>
                 <?php if ($article->media && !$article->attribute) { ?>
-                    <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                    <div class="div-holder"><img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" /></div>
                     <?php
                     } else if ($article->attribute && !$article->media) {
                         echo $article->attribute;
                     } else if ($article->attribute && $article->media) {
                         echo $article->attribute;
                     } else {
-                        echo '<img class="img-responsive" src="'.base_url('assets/static/img/default.jpg').'" />';
+                        echo '<div class="div-holder"><img class="img-responsive" src="'.base_url('assets/static/img/default.jpg').'" /></div>';
                     }
                 ?>
             </div>

@@ -6,9 +6,10 @@
       <h2 class="ts">ARTICLES</h2>
       <div class="row mb100">
         <?php if ($articles) { ?>
-      	<?php foreach ($articles as $article) { ?>
+      	<?php foreach ($articles as $article) {
+            $url_type = ($article->ext_url == 1) ? $article->url : base_url('read/article/'.$article->url);?>
 	      	<div class="col-xs-12 col-sm-4 col-md-4">
-              <h3 class="ts"><a href="<?php echo base_url('read/article/'.$article->url);?>"><?php echo $article->subject;?></a></h3>
+              <h3 class="ts"><a href="<?php echo $url_type;?>"><?php echo $article->subject;?></a></h3>
               <span class="ts"><?php echo date('D, d m Y',strtotime($article->publish_date));?></span>
 	          <div class="thumbnail">
 	            <?php if ($article->media && !$article->attribute) { ?>

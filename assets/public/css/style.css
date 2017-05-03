@@ -92,6 +92,7 @@ legend{color: #000;    font-size: 1em;}
 .agreed a { text-decoration:underline; }
 .agreed a:hover { font-style: italic; color: #990000 }
 .ts { text-shadow: 1px 1px 0px rgba(255, 255, 255, 1); margin-top: 30px; }
+.div-holder { position:relative;height:0;padding-bottom:56.21%; }
 .mb20 { margin-bottom: 20px;}
 .mb40 { margin-bottom: 40px;}
 .mb60 { margin-bottom: 60px;}

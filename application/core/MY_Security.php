@@ -2,18 +2,18 @@
 /**
  * Verify Cross Site Request Forgery Protection
  *
- * Additional CSRF Token check from GET parameter for occassionally only 
+ * Additional CSRF Token check from GET parameter for occassionally only
  *
  * @return  object
  */
 
 class MY_Security extends CI_Security {
- 
+
     function __construct()
     {
         parent::__construct();
     }
- 
+    /*
     public function csrf_verify() {
 
         // If it's not a POST and GET request we will set the CSRF cookie
@@ -50,5 +50,6 @@ class MY_Security extends CI_Security {
 
         return $this;
     }
+    */
 
 }
