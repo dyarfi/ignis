@@ -26,8 +26,8 @@
   <?php if ($articles) { ?>
       <?php foreach ($articles as $article) {
           $url_type = ($article->ext_url == 1) ? $article->url : base_url('read/article/'.$article->url);?>
-          ?>
           <div class="col-md-6 col-sm-12">
+                <h2 class="ts strong"><a href="<?php echo $url_type;?>"><?php echo $article->subject;?></a></h2>
                 <?php if ($article->media && !$article->attribute) { ?>
                   <div class="div-holder">
                       <?php if($article->ext_url == 1) { ?>
