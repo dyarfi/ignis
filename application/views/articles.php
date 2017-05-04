@@ -12,15 +12,33 @@
               <h3 class="ts"><a href="<?php echo $url_type;?>"><?php echo $article->subject;?></a></h3>
               <span class="ts"><?php echo date('D, d m Y',strtotime($article->publish_date));?></span>
 	          <div class="thumbnail">
-	            <?php if ($article->media && !$article->attribute) { ?>
-                    <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
-                <?php } else if ($article->attribute && !$article->media) {
-                    echo $article->attribute;
-                } else if ($article->attribute && $article->media) {
-                    echo $article->attribute;
-                } else {
-                    echo '<img class="img-responsive" src="'.base_url('assets/static/img/default.jpg').'" />';
-                } ?>
+                    <?php if ($article->media && !$article->attribute) { ?>
+                      <div class="div-holder">
+                          <?php if($article->ext_url == 1) { ?>
+                              <a href="<?php echo $article->url;?>" title="<?php echo $article->subject;?>">
+                                  <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                              </a>
+                          <?php } else { ?>
+                              <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                          <?php } ?>
+                      </div>
+                      <?php
+                      } else if ($article->attribute && !$article->media) {
+                          echo $article->attribute;
+                      } else if ($article->attribute && $article->media) {
+                          echo $article->attribute;
+                      } else {
+                          ?>
+                          <?php if($article->ext_url == 1) { ?>
+                              <a href="<?php echo $article->url;?>" title="<?php echo $article->subject;?>">
+                                  <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                              </a>
+                          <?php } else { ?>
+                              <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                          <?php } ?>
+                          <?php
+                      }
+                    ?>
 	          </div>
 	        </div>
       	<?php } ?>

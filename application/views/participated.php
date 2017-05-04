@@ -28,16 +28,31 @@
           $url_type = ($article->ext_url == 1) ? $article->url : base_url('read/article/'.$article->url);?>
           ?>
           <div class="col-md-6 col-sm-12">
-              <h2 class="ts strong"><a href="<?php echo $url_type;?>"><?php echo $article->subject;?></a></h2>
-              <?php if ($article->media && !$article->attribute) { ?>
-                  <div class="div-holder"><img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" /></div>
+                <?php if ($article->media && !$article->attribute) { ?>
+                  <div class="div-holder">
+                      <?php if($article->ext_url == 1) { ?>
+                          <a href="<?php echo $article->url;?>" title="<?php echo $article->subject;?>">
+                              <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                          </a>
+                      <?php } else { ?>
+                          <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                      <?php } ?>
+                  </div>
                   <?php
                   } else if ($article->attribute && !$article->media) {
                       echo $article->attribute;
                   } else if ($article->attribute && $article->media) {
                       echo $article->attribute;
                   } else {
-                      echo '<div class="div-holder"><img class="img-responsive" src="'.base_url('assets/static/img/default.jpg').'" /></div>';
+                      ?>
+                      <?php if($article->ext_url == 1) { ?>
+                          <a href="<?php echo $article->url;?>" title="<?php echo $article->subject;?>">
+                              <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                          </a>
+                      <?php } else { ?>
+                          <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                      <?php } ?>
+                      <?php
                   }
               ?>
           </div>
