@@ -61,11 +61,13 @@ $(document).ready(function() {
     });
     $('.reload_captcha').on('click',function() {
         var url = $(this).attr('rel');
+        var token_id = $(this).attr('data-id');
+        var token_value = $(this).attr('data-value');
+        var pdata = ""+token_id+"="+token_value+"";
         $.ajax({
             type: "POST",
             url: url,
-            //cache: false,
-            //async: true,
+            data : pdata,
             success: function(msg){
                 $('.reload_captcha').empty().html(msg);
                 // Need random for browser recache
