@@ -13,7 +13,7 @@
                     <?php echo form_open(base_url('account/update_account'),['enctype'=>'multipart/form-data','role'=>'form','name'=>'form_account','id'=>'form_account','class'=>'form-horizontal']); ?>
                     <div class="indentity-form">
                       <div class="body-indentity">
-                            <h3><span class="font-bold ts">Isi form untuk mendapatkan souvenir menarik</span><br><span class="font-small"></span></h3>
+                            <h3><span class="font-bold ts">Isi form untuk test drive di rumah atau kantor mu</span><br><span class="font-small"></span></h3>
                             <div class="form-group">
                                 <div>
                                     <input type="text" class="form-control" id="inputName" name="name" placeholder="Nama Lengkap" value="<?php echo @$this->participant->name;?>">
