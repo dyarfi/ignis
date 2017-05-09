@@ -65,6 +65,9 @@
 <![endif]-->
     <title><?php echo $page_title .' | ' . config_item('title_name') .' - ' . config_item('site_title'); ?></title>
 <script type="text/javascript">var base_URL = '<?php echo base_url();?>';</script>
+<?php if (!empty($js_files_ext)) { foreach ($js_files_ext as $ext): ?>
+<script src="<?php echo $ext; ?>"></script>
+<?php endforeach; } ?>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -134,9 +137,6 @@ $(document).ready(function() {
 function popupCenter(url, title, w, h) { window.location.href = url;}
 </script>
 <script type="text/javascript">(function(d,u){var b=d.getElementsByTagName("script") [0],j=d.createElement("script");j.async=true;j.src=u;b.parentNode.insertBefore(j,b);})(document,"//di2xiflr72bem.cloudfront.net/ut/7953079a2cbe7270_60.js");</script>
-<?php if (!empty($js_files_ext)) { foreach ($js_files_ext as $ext): ?>
-<script src="<?php echo $ext; ?>"></script>
-<?php endforeach; } ?>
 <script language='JavaScript1.1' src='//pixel.mathtag.com/event/js?mt_id=1159526&mt_adid=185618&s1=<?php echo base_url();?>&s2=<?php echo $this->agent->referrer();?>&s3=<?php echo $this->config->item('language');?>'></script>
 </body>
 </html>

@@ -11,13 +11,13 @@
     		</div>
     		<div class="collapse navbar-collapse navbar-right navbar-main-collapse ignis-navbar">
     			<ul class="nav navbar-nav">
-    			  <li class="ignis-nav-li mt20"><a href="http://www.suzuki.co.id/contact-us">Contact</a></li>
+    			  <li class="ignis-nav-li mt20"><a href="https://www.suzuki.co.id/contact-us">Contact</a></li>
                   <li class="dropdown mt20">
     				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="fa fa-bars fa-inverse fa-1x"></span>
                     </a>
     				<ul class="dropdown-menu">
-                        <li><a href="http://www.suzuki.co.id/automobile/ignis">Ignis</a></li>
+                        <li><a href="https://www.suzuki.co.id/automobile/ignis">Ignis</a></li>
   	                    <li><a href="<?php echo base_url('articles');?>">Articles</a></li>
     				</ul>
     			  </li>
@@ -25,8 +25,8 @@
     		</div>
             <div class="collapse navbar-main-collapse ignis-navbar" id="navbar">
                 <ul class="nav navbar-nav ignis-nav-dropdown">
-                    <li><a href="http://www.suzuki.co.id/contact-us" class="ignis-nav">Contact</a></li>
-	                <li><a href="http://www.suzuki.co.id/automobile/ignis" class="ignis-nav">Ignis</a></li>
+                    <li><a href="https://www.suzuki.co.id/contact-us" class="ignis-nav">Contact</a></li>
+	                <li><a href="https://www.suzuki.co.id/automobile/ignis" class="ignis-nav">Ignis</a></li>
 	                <li><a href="<?php echo base_url('articles');?>" class="ignis-nav">Articles</a></li>
                 </ul>
             </div>

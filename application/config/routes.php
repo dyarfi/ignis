@@ -74,6 +74,7 @@ $route[$admin.'/article_gallery/(:any)']  = 'article/article_gallery/$1';
 
 // Participant and Attachment Routes
 $route[$admin.'/participant/(:any)']			= 'participant/$1';
+$route[$admin.'/driveparticipant/(:any)']		= 'participant/driveparticipant/$1';
 
 /*
 | -------------------------------------------------------------------------

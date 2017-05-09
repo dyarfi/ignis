@@ -69,12 +69,14 @@ class Home extends Public_Controller {
 		// Set main template
 		$data['main'] = 'home';
 
-		// Load js execution
-		//$data['js_inline'] = "$('.popup_account').click()";
-		$data['js_inline'] = "";
+		$data['js_files_ext'] = [
+			"https://maps.google.com/maps/api/js?key=AIzaSyDbboZY7KeTOi5V6-zJNUsQG_-THlw6tyQ&amp;language=id&amp;region=ID",
+			//base_url('assets/public/js/locator.js')
+		];
 
 		// Load js execution
-		$data['js_inline'] .= "";
+		//$data['js_inline'] = "$('.popup_account').click()";
+		$data['js_inline'] = "initialize();";
 
 		// Load site template
 		$this->load->view('template/public/template', $this->load->vars($data));
@@ -143,7 +145,7 @@ class Home extends Public_Controller {
 		$data['main'] = 'participated';
 
 		// Load js execution
-		$data['js_inline'] = "(new Image()).src = 'http://aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid={$this->participant->phone_number}&sp=jak';";
+		$data['js_inline'] = "(new Image()).src = '//aw.dw.impact-ad.jp/c/map/?oid=dax.079a2cbe7270&cid={$this->participant->phone_number}&sp=jak';";
 
 		// Load js execution
 		$data['js_files_ext'] = ["//pixel.mathtag.com/event/js?mt_id=1159527&mt_adid=185618&s1=".base_url()."&s2=".$this->agent->referrer()."&s3=".$this->config->item('language').""];

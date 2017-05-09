@@ -315,6 +315,7 @@ class Participants Extends MY_Model {
             'about' => @$object['about'],
             'address'	=> @$object['address'],
             'region'	=> @$object['region'],
+            'location'	=> @$object['location'],
             'phone_number' => @$object['phone'],
             'photo_url'	=> @$object['photo_url'],
             'status' => @$object['status']

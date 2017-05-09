@@ -146,17 +146,26 @@ $config['modulelist'] = array(
 		'models'    => array('participant/Participants'),
 		// Participant module menus
 		'module_menu'		=> array(
-                    'participant/index' => 'Participant'
+                    'participant/index' => 'Participant',
+                    'driveparticipant/index' => 'Drive Participant'
         ),
 		'module_function'	=> array(
                     // Participant functions
-                    'participant/index/add'	    => 'Add Participant Answer',
-                    'participant/index/view'    => 'View Participant Answer',
-                    'participant/index/edit'    => 'Edit Participant Answer',
-                    'participant/index/delete'  => 'Delete Participant Answer',
-                    'participant/index/change'  => 'Change Participant Answer Status',
-                    'participant/index/export'  => 'Export Participant Answer',
-                    'participant/index/print'   => 'Print Participant Answer'
+                    'participant/index/add'	    => 'Add Participant',
+                    'participant/index/view'    => 'View Participant',
+                    'participant/index/edit'    => 'Edit Participant',
+                    'participant/index/delete'  => 'Delete Participant',
+                    'participant/index/change'  => 'Change Participant Status',
+                    'participant/index/export'  => 'Export Participant',
+                    'participant/index/print'   => 'Print Participant',
+                    // Participant Drive functions
+                    'driveparticipant/index/add'	 => 'Add Drive Participant',
+                    'driveparticipant/index/view'    => 'View Drive Participant',
+                    'driveparticipant/index/edit'    => 'Edit Drive Participant',
+                    'driveparticipant/index/delete'  => 'Delete Drive Participant',
+                    'driveparticipant/index/change'  => 'Change Drive Participant Status',
+                    'driveparticipant/index/export'  => 'Export Drive Participant',
+                    'driveparticipant/index/print'   => 'Print Drive Participant'
         )
 	),
     // Article module

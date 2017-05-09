@@ -15,7 +15,7 @@
                   <h3 class="ts">Kode Unik Anda : <b class="text-white font-bold"><?php echo $this->participant->verify; ?></b></h3>
                   <a href="<?php echo base_url('account/logout');?>" class="btn btn-danger btn-md">LOGOUT</a>
                   <p class="ts">
-                  Simpan nomor unik peserta Anda untuk ditukarkan dengan souvenir menarik di acara pameran Suzuki Ignis di <b>Kota Kasablanka</b> tanggal <b>19 - 23 April 2017</b> dan <b>IIMS</b> tanggal <b>27 April - 7 Mei 2017.</b>
+                  Mohon di simpan nomor unik peserta Anda.
                   </p>
                   <a class="ts font-bold" href="<?php echo base_url('page/terms-and-conditions');?>" class="font-bold">Syarat &amp; Ketentuan</a>
                 </div>

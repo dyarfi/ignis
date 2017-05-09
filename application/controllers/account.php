@@ -345,8 +345,9 @@ class Account extends Public_Controller {
         $fields	= array(
                         'name'  => '',
                         'email' => '',
-                        'phone_number'=> '',
-        				'captcha'     => '');
+                        'phone_number' => '',
+						'address' => '',
+        				'captcha' => '');
 
         $errors	= $fields;
 
@@ -393,8 +394,9 @@ class Account extends Public_Controller {
                 $object['name']            = $this->input->get_post('name', true);
                 $object['email']           = $this->input->get_post('email', true);
                 $object['phone_number']    = $this->input->get_post('phone_number', true);
-                $object['verify']		   = strtoupper($this->input->get_post('captcha', true) .'-'.random_string('alnum',2));
-                $object['status']          = '1';
+                $object['verify']		   = strtoupper($this->input->get_post('captcha', true) .'-'.random_string('alnum',3));
+                $object['status']          = '2';
+				$object['location']        = $this->input->get_post('location', true);;                
                 $object['completed']       = '1';
 
                 $return = $this->Participants->updateParticipant($object);

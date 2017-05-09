@@ -14,7 +14,7 @@
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url();?>assets/admin/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url();?>assets/admin/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo base_url();?>assets/admin/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
@@ -64,7 +64,7 @@
 	<!-- END LOGO -->
 	<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 	<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><img src="<?php echo base_url();?>assets/admin/img/menu-toggler.png" alt=""/></a>
-	<!-- END RESPONSIVE MENU TOGGLER -->		
+	<!-- END RESPONSIVE MENU TOGGLER -->
 	<!-- BEGIN TOP NAVIGATION MENU -->
 	<ul class="nav navbar-nav pull-right">
 	    <!-- BEGIN NOTIFICATION DROPDOWN -->
@@ -77,7 +77,7 @@
 		    <span class="username"><?php echo Acl::user()->name;?></span>
 		    <i class="fa fa-angle-down"></i>
 		</a>
-		<ul class="dropdown-menu">				
+		<ul class="dropdown-menu">
 		    <li><a href="<?php echo base_url(ADMIN);?>/user/view/<?php echo Acl::user()->id;?>"><i class="fa fa-user"></i> Profile</a></li>
 		    <li><a href="javascript:;"><i class="fa fa-lock"></i> Last Login <?php echo date('Y-m-d, H:i:s',Acl::user()->last_login);?></a></li>
 		    <li><a href="<?php echo base_url(ADMIN)?>/authenticate/logout"><i class="fa fa-key"></i> Log Out</a></li>
@@ -105,29 +105,29 @@
 		    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 		</li>
 		<li class="sidebar-search-wrapper">
-		<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->					
+		<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
 		<!-- END RESPONSIVE QUICK SEARCH FORM -->
-		</li>						
-		<?php		
+		</li>
+		<?php
 		$k = 0;
-		foreach (Acl::admin_system_modules() as $name => $functions) { 
+		foreach (Acl::admin_system_modules() as $name => $functions) {
 		    if (is_array($functions) && count($functions) != 0) { ?>
 		    <li class="<?if(preg_match('/\b'.$this->uri->segment(2).'\b/i', strtolower($name))) { ?>activ e<?php } ?>">
 			<a class="" href="#collapse<?php echo $k;?>">
 			    <span class="title"><?php echo $name; ?></span><span class="arrow "></span>
-			</a>					
-			<ul class="sub-menu"> 
+			</a>
+			<ul class="sub-menu">
 			<?php foreach ($functions as $row_function => $row_label) { ?>
 			    <?php if(Acl::user()->group_id != 1 && $row_label == 'Groups') continue; ?>
 			    <li class="<?php echo preg_match('/\b'.$this->uri->segment(2).'\b/i', substr($row_function, 0, strpos($row_function, '/'))) ? 'active' : ''; ?>">
 				<a href="<?php echo base_url(ADMIN . $row_function .'?active=current'); ?>"><?php echo $row_label; ?></a>
 			    </li>
 			<?php } ?>
-			</ul>				
+			</ul>
 		    </li>
-		<?php } 
+		<?php }
 		$k++;
-		} 
+		}
 		?>
 	    </ul>
 	    <!-- END SIDEBAR MENU -->
@@ -204,15 +204,15 @@
 <script src="<?php echo base_url()?>assets/admin/scripts/custom/form-setting.js" type="text/javascript"></script>
 <!-- END USER AJAX JAVASCRIPTS -->
 
-    
+
 <script>
-jQuery(document).ready(function() {    
+jQuery(document).ready(function() {
     App.init(); // initlayout and core plugins
-   
+
     TableManaged.init();
-   
-    ComponentsPickers.init();      
-   
+
+    ComponentsPickers.init();
+
     Index.init();
     Index.initCharts(); // init index page's custom scripts
     //Charts.initPieCharts();
