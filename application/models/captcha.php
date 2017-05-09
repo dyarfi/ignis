@@ -19,7 +19,6 @@ class Captcha extends MY_Model {
 			$insert_data	= TRUE;
 
 			$sql	= 'CREATE TABLE IF NOT EXISTS `'.$this->table.'` ('
-					. '`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,'
 					. '`time` INT(11) NULL, '
 					. '`ip_address` VARCHAR(16) NULL,'
 					. '`word` VARCHAR(10) NULL'
