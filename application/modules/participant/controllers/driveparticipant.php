@@ -30,7 +30,7 @@ class DriveParticipant extends Admin_Controller {
             $crud->set_subject('Participant Drive');
             // Set column
             //$crud->columns('name','email','phone_number','identity','profile_url','verify','join_date');
-            $crud->columns('name','email','phone_number','location','verify','join_date');
+            $crud->columns('name','email','phone_number','address','verify','join_date');
 			// Set column display
             $crud->display_as('phone_number','Phone');
             $crud->display_as('verify','Unique Code');

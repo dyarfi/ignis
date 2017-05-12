@@ -354,7 +354,8 @@ class Account extends Public_Controller {
         $this->form_validation->set_rules('name', 'Name Lengkap', 'trim|min_length[5]|max_length[32]|xss_clean|required');
 		$this->form_validation->set_rules('email', 'Email','trim|valid_email|max_length[55]|xss_clean|required');
         $this->form_validation->set_rules('phone_number', 'No. Hp','trim|numeric|min_length[8]|max_length[25]|required');
-        $this->form_validation->set_rules('captcha', 'Captcha Code','trim|required|max_length[10]|xss_clean|callback_match_captcha');
+		$this->form_validation->set_rules('address', 'Alamat','trim|text|min_length[8]|max_length[75]|callback_custom_alpha|required');
+        $this->form_validation->set_rules('captcha', 'Captcha','trim|required|max_length[10]|callback_match_captcha|xss_clean');
 
         // Check if post is requested
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
@@ -396,7 +397,8 @@ class Account extends Public_Controller {
                 $object['phone_number']    = $this->input->get_post('phone_number', true);
                 $object['verify']		   = strtoupper($this->input->get_post('captcha', true) .'-'.random_string('alnum',3));
                 $object['status']          = '2';
-				$object['location']        = $this->input->get_post('location', true);;                
+				$object['address']         = $this->input->get_post('address', true);;
+				$object['location']        = $this->input->get_post('location', true);;
                 $object['completed']       = '1';
 
                 $return = $this->Participants->updateParticipant($object);
@@ -687,6 +689,20 @@ class Account extends Public_Controller {
             return true;
         }
     }
+
+	// callback function for custom alphanumeric, dash dot and
+	public function custom_alpha($str)
+	{
+	    if ( !preg_match('/^[A-Za-z0-9 .,\-]+$/i',$str) )
+	    {
+			// custom error message
+			$this->form_validation->set_message('custom_alpha', lang('regex_match'));
+	        return false;
+	    } else {
+			return true;
+		}
+	}
+
 }
 
 /* End of file user.php */

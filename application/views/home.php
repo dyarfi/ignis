@@ -29,6 +29,11 @@
                                     <input type="text" class="form-control" id="inputPhone" name="phone_number" placeholder="No. Hp" value="<?php echo @$this->participant->phone_number;?>">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div>
+                                    <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Alamat" value="<?php echo @$this->participant->address;?>">
+                                </div>
+                            </div>
                             <div class="form-group captcha-css">
                                 <div class="col-md-8">
                                     <input type="text" class="form-control" id="inputCaptcha" placeholder="Kode Captcha" name="captcha" value="<?php echo @$fields->captcha;?>">

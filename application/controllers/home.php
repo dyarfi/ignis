@@ -69,14 +69,15 @@ class Home extends Public_Controller {
 		// Set main template
 		$data['main'] = 'home';
 
-		$data['js_files_ext'] = [
-			"https://maps.google.com/maps/api/js?key=AIzaSyDbboZY7KeTOi5V6-zJNUsQG_-THlw6tyQ&amp;language=id&amp;region=ID",
+		//$data['js_files_ext'] = [
+			//"https://maps.google.com/maps/api/js?key=AIzaSyDbboZY7KeTOi5V6-zJNUsQG_-THlw6tyQ&amp;language=id&amp;region=ID",
 			//base_url('assets/public/js/locator.js')
-		];
+		//];
 
 		// Load js execution
 		//$data['js_inline'] = "$('.popup_account').click()";
-		$data['js_inline'] = "initialize();";
+		//$data['js_inline'] = "initialize();";
+		$data['js_inline'] = "";
 
 		// Load site template
 		$this->load->view('template/public/template', $this->load->vars($data));

@@ -94,7 +94,7 @@ $lang['email_contact_participant'] = 'Yth <b>%s</b>, terima kasih telah mendafta
 									.'Phone : <b>%s</b><br>'
 									.'Kode Unik : <b>%s</b><br>'
 									.'<br/>'
-									.'Simpan Kode Unik peserta Anda.'
+									.'Mohon simpan kode unik anda untuk keperluan selanjutnya.'
 									.'<br>'
 									.'<br><br><br>Terima Kasih,<br>'
 									.'<br><br>Suzuki Indonesia';

@@ -15,7 +15,7 @@
                   <h3 class="ts">Kode Unik Anda : <b class="text-white font-bold"><?php echo $this->participant->verify; ?></b></h3>
                   <a href="<?php echo base_url('account/logout');?>" class="btn btn-danger btn-md">LOGOUT</a>
                   <p class="ts">
-                  Mohon di simpan nomor unik peserta Anda.
+                  Mohon simpan kode unik anda untuk keperluan selanjutnya.
                   </p>
                   <a class="ts font-bold" href="<?php echo base_url('page/terms-and-conditions');?>" class="font-bold">Syarat &amp; Ketentuan</a>
                 </div>
