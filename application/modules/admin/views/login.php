@@ -25,7 +25,7 @@
     <div class="form-group form-inline">
     <?php echo form_error('captcha','', ''); ?>
     <label class="control-label visible-ie8 visible-ie9">Captcha</label>
-    <a class="reload_captcha input-small pull-left" rel="<?php echo base_url('xhr/reload_captcha')?>" href="javascript:;"><?php echo $captcha['image'];?></a>
+    <a class="reload_captcha input-small pull-left" data-id="<?php echo $this->security->get_csrf_token_name(); ?>" data-value="<?php echo $this->security->get_csrf_hash(); ?>" rel="<?php echo base_url('xhr/reload_captcha')?>" href="javascript:;"><?php echo $captcha['image'];?></a>
     <div class="input-icon pull-right">
         <i class="fa fa-lock"></i>
         <input class="form-control placeholder-no-fix input-small" type="text" autocomplete="off" placeholder="Captcha" name="captcha"/>
