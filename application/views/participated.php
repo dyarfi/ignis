@@ -47,7 +47,7 @@
                       ?>
                       <?php if($article->ext_url == 1) { ?>
                           <a href="<?php echo $article->url;?>" title="<?php echo $article->subject;?>">
-                              <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
+                              <?php if ($article->media) { ?><img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" /><?php } else { echo ''; } ?>
                           </a>
                       <?php } else { ?>
                           <img class="img-responsive" src="<?php echo base_url('uploads/articles/'.$article->media);?>" />
