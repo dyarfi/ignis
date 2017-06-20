@@ -22,24 +22,24 @@ class Users Extends MY_Model {
 							// Set Foreign Key to primary key
 							'primary_key'=>'id'],
 						];
-		
+
 	// Simply set $soft_delete to be TRUE and rows will magically be marked as deleted
-	public $soft_delete = TRUE;	
-	
+	public $soft_delete = FALSE;	
+
 	public function __construct() {
 	    // Call the Model constructor
 		parent::__construct();
 
 	    // Set default db
-	    $this->db = $this->load->database('default', true);		
+	    $this->db = $this->load->database('default', true);
 	    // Set default table
 	    $this->table = $this->db->dbprefix($this->table);
 		// Set private MY_Model table name
 		$this->_table = $this->table;
 	}
-	
+
 	public function install() {
-		
+
 		$insert_data	= FALSE;
 
 		if (!$this->db->table_exists($this->table)) {
@@ -61,13 +61,13 @@ class Users Extends MY_Model {
                             . '`modified` INT(11) UNSIGNED NOT NULL, '
                             . 'INDEX (`email`, `group_id`) '
                             . ') ENGINE=MYISAM DEFAULT CHARSET=utf8;';
-		    
+
 		    $this->db->query($sql);
 		}
-		
+
 		if(!$this->db->query('SELECT * FROM `'.$this->table.'` LIMIT 0, 1;'))
 				$insert_data	= TRUE;
-		
+
 		if ($insert_data) {
 			$sql	= 'INSERT INTO `'.$this->table.'` '
 				. '(`id`,`email`,`password`,`username`,`group_id`,`is_system`,`last_login`,`logged_in`,`session_id`,`verify`,`status`,`added`,`modified`) '
@@ -81,9 +81,9 @@ class Users Extends MY_Model {
 		}
 
 		return $this->db->table_exists($this->table);
-		
+
 	}
-	
+
 	public function getCount($status = null){
 	    $data = array();
 	    $options = array('status' => $status);
@@ -92,7 +92,7 @@ class Users Extends MY_Model {
 	    $data = $this->db->count_all_results();
 	    return $data;
 	}
-	
+
 	public function getUser($id = null){
 	    if(!empty($id)){
 		$data = array();
@@ -106,7 +106,7 @@ class Users Extends MY_Model {
 		return $data;
 	    }
 	}
-	
+
 	public function getUserByEmail($email = null){
 	    if(!empty($email)){
 		$data = array();
@@ -120,7 +120,7 @@ class Users Extends MY_Model {
 		return $data;
 	    }
 	}
-	
+
 	public function getUserByUsername($username = null){
 	    if(!empty($username)){
 		$data = array();
@@ -134,11 +134,11 @@ class Users Extends MY_Model {
 		return $data;
 	    }
 	}
-	
+
 	public function getAllUser($status='',$options=''){
 	    $data = array();
 	    if ($options) {
-	    	$this->db->where($options);	   
+	    	$this->db->where($options);
 	    }
         if ($status) {
             $options = array('status'=>$status);
@@ -155,14 +155,14 @@ class Users Extends MY_Model {
 	    $Q->free_result();
 	    return $data;
 	}
-	
-	// Get user's Email from posts 
+
+	// Get user's Email from posts
 	public function getUserEmail($email=null){
 	    if(!empty($email)){
             $data = array();
 
             // Option and query result
-            $options = array('email' => $email);			
+            $options = array('email' => $email);
             $Q = $this->get_by($options,1);
             // Check result
             if(count($Q) > 0) {
@@ -171,17 +171,17 @@ class Users Extends MY_Model {
             } else {
                 // Return false if exists
                 return false;
-            }		 
+            }
 	    }
 	}
-	
-	// Get user's Password from hashed password 
+
+	// Get user's Password from hashed password
 	public function getUserPassword($password=null){
 	    if(!empty($password)){
             $data = array();
 
             // Option and query result
-            $options = array('password' => $password);			
+            $options = array('password' => $password);
             $Q = $this->db->get_where($this->table,$options,1);
 
             // Check result
@@ -191,10 +191,10 @@ class Users Extends MY_Model {
             } else {
                 // Return false if exists
                 return false;
-            }		 
+            }
 	    }
 	}
-        
+
 	// Get loggedin count for all user
 	public function getLoginCount() {
         $data = array();
@@ -202,37 +202,37 @@ class Users Extends MY_Model {
         $this->db->where($options,1);
         $this->db->from($this->table);
         $data = $this->db->count_all_results();
-        return $data;            
+        return $data;
     }
-        
+
 	// Get all users Login stats by login date
 	public function getLoginStats() {
-	    
+
 	    $sql = 'SELECT count(id) total_login, FROM_UNIXTIME(`last_login`, \'%Y/%m/%d\') last_login '
                 .'FROM `'. $this->table .'`'
                 .'WHERE FROM_UNIXTIME(`last_login`, \'%Y/%m/%d\') >= \''.date('Y/m/d',strtotime("-5 month", time())).'\' '
                 .'AND FROM_UNIXTIME(`last_login`, \'%Y/%m/%d\') <= \''.date('Y/m/d').'\' '
                 .'GROUP BY FROM_UNIXTIME(`last_login`, \'%Y/%m/%d\') ORDER BY `last_login` ASC';
-	    
+
 	    $query = $this->db->query($sql);
-            
+
 	    return $query->result_object();
 	}
-        
+
 	// Authenticate function for user login
-	public function login($object=null){		
+	public function login($object=null){
         // Check parameters
 	    if(!empty($object)){
             $data = array();
 
             // Find username or email from input
             $this->db->where('username', $object['username'])
-            ->or_where('email', $object['username']); 
+            ->or_where('email', $object['username']);
 
             // Query the table
-            $Q = $this->db->get($this->table,1);               
+            $Q = $this->db->get($this->table,1);
 
-            if ($Q->num_rows() > 0){				
+            if ($Q->num_rows() > 0){
                 // Query login
                 $result = $Q->row_object();
                 $salted = hash('sha1',$object['password'].$result->verify);
@@ -244,28 +244,28 @@ class Users Extends MY_Model {
                 } else {
                     $data = 'disabled';
                 }
-            } 			 
-            
+            }
+
             // Free result
             $Q->free_result();
             return $data;
 	    }
 	}
-	
+
 	public function setLastLogin($id=null) {
 	    //Get user id
 	    $this->db->where('id', $id);
 	    //Return result
 	    return $this->db->update($this->table, array('last_login'=>time(),'logged_in'=>0));
 	}
-	
+
 	public function setLoggedIn($id=null) {
 	    //Get user id
 	    $this->db->where('id', $id);
 	    //Return result
 	    return $this->db->update($this->table, array('logged_in'=>1,'session_id'=>$this->session->userdata('session_id')));
 	}
-	
+
 	public function setPassword($user=null,$changed=''){
 		// Check if password is changed
 	    $password = ($changed) ? $changed : random_string('alnum', 8);
@@ -273,19 +273,19 @@ class Users Extends MY_Model {
 	    $data = array('password' => sha1($user->verify.$password));
         // Update database
 	    $this->db->where('id', $user->id);
-	    $this->db->update($this->table, $data); 
-	    return $password;		
-	}	
-	
+	    $this->db->update($this->table, $data);
+	    return $password;
+	}
+
 	public function setUser($object=null){
-		
+
 	    // Set User data
 	    $data = array(
 			'username'	=> $object['username'],
-			'email'	=> $object['email'],			
-			'password'	=> sha1($object['verify'].$object['password']),	
-			'group_id'	=> @$object['group_id'],			
-			'added'	=> time(),	
+			'email'	=> $object['email'],
+			'password'	=> sha1($object['verify'].$object['password']),
+			'group_id'	=> @$object['group_id'],
+			'added'	=> time(),
 			'status'	=> $object['status']
 	    );
 
@@ -308,52 +308,52 @@ class Users Extends MY_Model {
 				    'first_name'	=> !empty($object['first_name']) ? $object['first_name'] : NULL,
 				    'last_name'	=> !empty($object['last_name']) ? $object['last_name'] : NULL,
 				    'birthday'	=> !empty($object['birthday']) ? $object['birthday'] : NULL,
-				    'phone'		=> !empty($object['phone']) ? $object['phone'] : NULL,	
+				    'phone'		=> !empty($object['phone']) ? $object['phone'] : NULL,
 				    'mobile_phone'	=> !empty($object['mobile_phone']) ? $object['mobile_phone'] : NULL,
 				    'fax'		=> !empty($object['fax']) ? $object['fax'] : NULL,
 				    'website'	=> !empty($object['website']) ? $object['website'] : NULL,
 				    'about'		=> !empty($object['about']) ? $object['about'] : NULL,
 				    'division'	=> !empty($object['division']) ? $object['division'] : NULL,
 				    'file_name'	=> !empty($object['file_name']) ? $object['file_name'] : NULL,
-				    'added'		=> time(),	
+				    'added'		=> time(),
 				    'status'	=> 1);
 
-		    // Insert User Profile 
+		    // Insert User Profile
 		    $this->db->insert('tbl_user_profiles', $data);
 
 	    }
 
 	    // Return last insert id primary
 	    return $insert_id;
-		
-	}	
-	
+
+	}
+
 	public function setStatus($id=null,$status=null) {
-            
+
         // Get user id
 	    $this->db->where('id', $id);
-	    
+
 	    // Return result
 	    return $this->db->update($this->table, array('status'=>$status,'modified'=>time()));
 
 	}
-	
+
 	public function updateUser($object=null){
-	    
+
 	    // Set User data
 	    $data = array(
             'username'  => $object['username'],
-            'email'	    => $object['email'],			
-            'group_id'  => @$object['group_id'],			
-            'modified'  => time(),	
+            'email'	    => $object['email'],
+            'group_id'  => @$object['group_id'],
+            'modified'  => time(),
             'status'    => $object['status']
 	    );
 
-	    // Update User data             
-	    $this->db->where('id', $object['id']);      
+	    // Update User data
+	    $this->db->where('id', $object['id']);
 
 	    // Return last insert id primary
-	    $update = $this->db->update($this->table, $data);	
+	    $update = $this->db->update($this->table, $data);
 
 	    // Check if last is existed
 	    if ($update) {
@@ -368,53 +368,53 @@ class Users Extends MY_Model {
 				    'first_name'    => !empty($object['first_name']) ? $object['first_name'] : '',
 				    'last_name'	    => !empty($object['last_name']) ? $object['last_name'] : '',
 				    'birthday'	    => !empty($object['birthday']) ? $object['birthday'] : '',
-				    'phone'	    => !empty($object['phone']) ? $object['phone'] : '',	
+				    'phone'	    => !empty($object['phone']) ? $object['phone'] : '',
 				    'mobile_phone'  => !empty($object['mobile_phone']) ? $object['mobile_phone'] : '',
 				    'fax'	=> !empty($object['fax']) ? $object['fax'] : '',
 				    'website'	=> !empty($object['website']) ? $object['website'] : '',
 				    'about'	=> !empty($object['about']) ? $object['about'] : '',
 				    'division'	=> !empty($object['division']) ? $object['division'] : '',
-				    'modified'	=> time(),	
+				    'modified'	=> time(),
 				    'status'	=> $object['status']);
-		    
-			// Get User Profile ID 
-		    $query = $this->db->get_where('tbl_user_profiles', array('user_id'=>$object['id'])); 
-			
+
+			// Get User Profile ID
+		    $query = $this->db->get_where('tbl_user_profiles', array('user_id'=>$object['id']));
+
 			// Check if profile exists
 			if($query->num_rows() == 0) {
-				
-				// Insert if not found User Profile 
+
+				// Insert if not found User Profile
 				$data['added'] = time();
 				$this->db->insert('tbl_user_profiles', $data);
-				
+
 			} else {
-				 
-				// Update User Profile 
+
+				// Update User Profile
 				$this->db->where('user_id', $object['id']);
 				$this->db->update('tbl_user_profiles', $data);
-				
+
 			}
 	    }
 
 	    // Return last id
 	    return $update;
-		
+
 	}
-	
+
 	public function deleteUser($id) {
 
 		// Check user id /** using regular ci model method **/
 		// $this->db->where('id', $id);
-		
+
 		// Delete user form database
 		if ($this->delete($id)) {
-			
+
 			// Check user profile id
 			$this->db->where('user_id', $id);
-			
-			// Delete user profile form database		
+
+			// Delete user profile form database
 			return $this->db->delete('tbl_user_profiles');
-			
-		}		
-	}	
+
+		}
+	}
 }
